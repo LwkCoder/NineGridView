@@ -5,7 +5,8 @@ NineGridView：九宫格图片显示器
 <br/>
 <br/>
 ###使用方法:<br/>
-'//设置图片加载器，这个是必须的，不然图片无法显示
+```
+//设置图片加载器，这个是必须的，不然图片无法显示
 mNineGridView.setImageLoader(new GlideImageLoader());'
 //设置显示列数，默认3列
 mNineGridView.setColumnCount(4);
@@ -40,10 +41,10 @@ mNineGridView.setOnItemClickListener(new NineGridView.onItemClickListener()
                 //编辑模式下，某张图片被删除后回调这里
             }
         });
-'
+```
 <br/>
 ###效果图:<br/>
-![](https://github.com/Vanish136/FamilyChat/raw/master/screenshoot/sample_pic_display.png)
-![](https://github.com/Vanish136/FamilyChat/raw/master/screenshoot/sample_pic_edit.png)
+![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample_pic_display.png)
+![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample_pic_edit.png)
 
 
