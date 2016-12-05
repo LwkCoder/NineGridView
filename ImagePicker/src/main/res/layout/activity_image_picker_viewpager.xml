@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@id/rl_imagepicker_viewpager_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_imagepicker_bg"
+    android:fitsSystemWindows="true"
+    tools:context=".view.activity.ImagePickerDetailActivity">
+
+    <com.lwk.imagepicker.view.widget.ViewPagerFixed
+        android:id="@id/vp_imagepicker_viewpager_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.lwk.imagepicker.view.widget.ImagePickerActionBar
+        android:id="@id/cab_imagepicker_viewpager_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/black_actionbar"/>
+
+    <include
+        android:id="@id/view_imagepicker_viewpager_bottom"
+        layout="@layout/layout_imagepicker_vp_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_imagepicker_bottomview"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

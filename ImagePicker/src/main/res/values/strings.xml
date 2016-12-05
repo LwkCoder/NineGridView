@@ -1,0 +1,27 @@
+<resources>
+    <string name="tv_imagepicker_back">返回</string>
+    <string name="error_no_sdcard">SD卡不存在！</string>
+    <string name="error_imagepicker_scanfail">无法扫描本地图片数据</string>
+    <string name="error_imagepicker_parsefail">无法读取图片</string>
+    <string name="label_imagepicker_allfloder">全部图片</string>
+    <string name="warning_imagepicker_limit_num">只能选择%1$s张照片</string>
+    <string name="tv_imagepicker_gridactivity_title">选择图片</string>
+    <string name="btn_imagepicker_ok">完成(%1$s/%2$s)</string>
+    <string name="tv_imagepicker_griditem_camera">拍摄照片</string>
+    <string name="tv_imagepicker_floder_img_num">%1$s张图片</string>
+    <string name="tv_imagepicker_pager_titlecount">%1$s/%2$s</string>
+    <string name="tv_imagepicker_vp_bottom_choose">选中</string>
+    <string name="tv_imagepicker_actionbar_preview">预览</string>
+    <string name="warning_imagepicker_permission_sdcard_denied">无法获取外部存储卡读写权限</string>
+    <string name="warning_imagepicker_permission_camera_denied">无法获取拍照权限</string>
+    <string name="dialog_imagepicker_permission_title">权限申明</string>
+    <string name="dialog_imagepicker_permission_confirm">我知道了</string>
+    <string name="dialog_imagepicker_permission_nerver_ask_confirm">去设置</string>
+    <string name="dialog_imagepicker_permission_nerver_ask_cancel">取消</string>
+    <string name="dialog_imagepicker_permission_sdcard_message">应用程序需要获取外部存储卡的读写权限，否则无法获取照片数据!</string>
+    <string name="dialog_imagepicker_permission_camera_message">应用程序需要获取拍照权限，否则无法拍摄照片!</string>
+    <string name="dialog_imagepicker_permission_sdcard_nerver_ask_message">应用程序无法获取外部存储卡的读写权限，导致无法获取照片数据，您可通过系统设置界面打开软件的读写权限</string>
+    <string name="dialog_imagepicker_permission_camera_nerver_ask_message">应用程序无法获取拍照权限，导致无法启用拍照功能，您可通过系统设置界面打开软件的拍照权限</string>
+
+    <string name="author_imagepicker">com.lwk.imagepicker.ninegridview.fileprovider</string>
+</resources>

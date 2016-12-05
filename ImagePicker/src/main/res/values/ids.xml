@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="cab_imagepicker_viewpager_top" type="id"/>
+    <item name="view_imagepicker_viewpager_bottom" type="id"/>
+    <item name="rl_imagepicker_viewpager_root" type="id"/>
+    <item name="vp_imagepicker_viewpager_content" type="id"/>
+</resources>

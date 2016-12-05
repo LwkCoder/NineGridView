@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_imagepicker_bg"
+    android:fitsSystemWindows="true"
+    tools:context=".view.activity.ImagePickerGridActivity">
+
+
+    <com.lwk.imagepicker.view.widget.ImagePickerActionBar
+        android:id="@+id/cab_imagepicker_gridactivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <GridView
+        android:id="@+id/gridView_imagepicker_gridactivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/cab_imagepicker_gridactivity"
+        android:clipToPadding="false"
+        android:horizontalSpacing="2dp"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="3"
+        android:paddingBottom="@dimen/height_imagepicker_bottomview"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingTop="2dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="2dp"
+        android:visibility="gone"/>
+
+
+    <include
+        android:id="@+id/bottom_imagepicker_gridactivity"
+        layout="@layout/layout_imagepicker_grid_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_imagepicker_bottomview"
+        android:layout_alignParentBottom="true"/>
+
+    <ProgressBar
+        android:id="@+id/pgb_imagepicker_gridactivity"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>

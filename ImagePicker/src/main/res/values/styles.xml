@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--图片文件夹pop动画-->
+    <style name="FloderPopAnimStyle">
+        <item name="android:windowEnterAnimation">@anim/imagepicker_pop_slide_in</item>
+        <item name="android:windowExitAnimation">@anim/imagepicker_pop_slide_out</item>
+    </style>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+     <files-path/>代表的根目录： Context.getFilesDir()
+     <external-path/>代表的根目录: Environment.getExternalStorageDirectory()
+     <cache-path/>代表的根目录: getCacheDir()
+     -->
+    <external-path
+        name="camera_photos"
+        path=""/>
+</resources>
