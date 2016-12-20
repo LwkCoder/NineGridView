@@ -7,9 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 /**
- * Created by LWK
- * TODO 图片容器
- * 2016/12/1
+ * ImageContainer
  */
 
 public class NineGirdImageContainer extends FrameLayout
@@ -58,12 +56,12 @@ public class NineGirdImageContainer extends FrameLayout
         mHeight = MeasureSpec.getSize(heightMeasureSpec);
         setMeasuredDimension(mWidth, mHeight);
 
-        //测量并设置删除按钮的大小
+        //Measure the size of the delete button
         int delSize = mWidth * 1 / 5;
         int delMode = MeasureSpec.EXACTLY;
         int delSpec = MeasureSpec.makeMeasureSpec(delSize, delMode);
         mImgDelete.measure(delSpec, delSpec);
-        //测量并设置图片大小
+        //Measure the size of imageView
         int imgWidthSize = 0;
         int imgHeightSize = 0;
         int imgMode = MeasureSpec.EXACTLY;
@@ -84,7 +82,7 @@ public class NineGirdImageContainer extends FrameLayout
     }
 
     /**
-     * 设置图片ScanType
+     * Set scantype of imageView
      */
     private void setScanType(ImageView.ScaleType scanType)
     {
@@ -93,7 +91,7 @@ public class NineGirdImageContainer extends FrameLayout
     }
 
     /**
-     * 设置是否开启删除模式
+     * Set if is in the delete mode
      */
     public void setIsDeleteMode(boolean b)
     {
@@ -106,7 +104,7 @@ public class NineGirdImageContainer extends FrameLayout
     }
 
     /**
-     * 当前是否为删除模式
+     * If is in the delete mode
      */
     public boolean isDeleteMode()
     {
@@ -114,7 +112,7 @@ public class NineGirdImageContainer extends FrameLayout
     }
 
     /**
-     * 获取ImageView对象
+     * Get imageView object
      */
     public ImageView getImageView()
     {

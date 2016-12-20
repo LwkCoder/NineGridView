@@ -6,9 +6,7 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 
 /**
- * Created by LWK
- * TODO 自定义ImageView，模拟点击效果
- * 2016/12/1
+ * ImageView which has click effect
  */
 public class NineGridImageView extends ImageView
 {

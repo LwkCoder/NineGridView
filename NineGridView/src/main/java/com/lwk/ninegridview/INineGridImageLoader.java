@@ -4,9 +4,7 @@ import android.content.Context;
 import android.widget.ImageView;
 
 /**
- * Created by LWK
- * TODO 加载图片的接口
- * 2016/12/1
+ *The interface of imageloader
  */
 
 public interface INineGridImageLoader

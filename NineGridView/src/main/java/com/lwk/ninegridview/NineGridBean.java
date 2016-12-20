@@ -4,9 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by LWK
- * TODO 图片数据,被包裹的泛型必须实现Parcelable接口
- * 2016/12/2
+ * Data source
+ * NOTE:T class must implemente the interface of Parcelable
  */
 
 public class NineGridBean<T extends Parcelable> implements Parcelable
@@ -15,13 +14,6 @@ public class NineGridBean<T extends Parcelable> implements Parcelable
     private String originUrl;
     private T t;
 
-    /**
-     * 构造方法
-     *
-     * @param thumbUrl  缩略图地址
-     * @param originUrl 原图地址
-     * @param t         被包裹的泛型必须实现Parcelable接口
-     */
     public NineGridBean(String thumbUrl, String originUrl, T t)
     {
         this.thumbUrl = thumbUrl;
@@ -80,7 +72,7 @@ public class NineGridBean<T extends Parcelable> implements Parcelable
     {
         dest.writeString(this.thumbUrl);
         dest.writeString(this.originUrl);
-        dest.writeString(t.getClass().getName());//将泛型的className写进去
+        dest.writeString(t.getClass().getName());//Write the class name of T class
         dest.writeParcelable(this.t, flags);
     }
 
@@ -88,7 +80,7 @@ public class NineGridBean<T extends Parcelable> implements Parcelable
     {
         this.thumbUrl = in.readString();
         this.originUrl = in.readString();
-        String tClassName = in.readString();//读出泛型的className
+        String tClassName = in.readString();//Read the class name of T class
         try
         {
             this.t = in.readParcelable(Class.forName(tClassName).getClassLoader());

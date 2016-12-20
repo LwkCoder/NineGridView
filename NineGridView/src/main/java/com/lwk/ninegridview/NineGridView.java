@@ -16,35 +16,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by LWK
- * TODO 九宫格图片显示器
- * 2016/11/30
+ * Squared imageview displayer
  */
 public class NineGridView extends ViewGroup
 {
-    //单张图片尺寸，默认100dp
+    //Size of imageview while there has only one image
     private int mSingleImageSize = 100;
-    //单张图片宽高比，默认1：1
+    //Aspect ratio of only one imageview
     private float mSingleImageRatio = 1.0f;
-    //间隔大小，默认3dp
+    //Size of space
     private int mSpaceSize = 3;
-    //图片尺寸
+    //Width and height of every imageview(more than one image)
     private int mImageWidth, mImageHeight;
-    //列数，默认3列
+    //column count
     private int mColumnCount = 3;
-    //行数，根据数据和列数动态计算
+    //raw count,depends on column count
     private int mRawCount;
-    //图片加载接口
+    //interface of imageloader
     private INineGridImageLoader mImageLoader;
-    //图片数据
+    //image datas
     private List<NineGridBean> mDataList = new ArrayList<>();
-    //添加按钮
+    //plus button
     private NineGridImageView mImgAddData;
-    //子View点击监听
+    //child view click listener
     private onItemClickListener mListener;
-    //是否为编辑模式
+    //weather is in edit mode
     private boolean mIsEditMode;
-    //最大显示数量，默认9张
+    //Maximum of image
     private int mMaxNum = 9;
 
     public NineGridView(Context context)
@@ -96,14 +94,14 @@ public class NineGridView extends ViewGroup
 
         int resWidth = 0, resHeight = 0;
 
-        //测量宽度
+        //Measure width
         int measureWidth = MeasureSpec.getSize(widthMeasureSpec);
-        //可用宽度
+        //get available width
         int totalWidth = measureWidth - getPaddingLeft() - getPaddingRight();
 
         if (canShowAddMore())
         {
-            //编辑模式下，所有子View大小一样
+            //If is in edit mode,each child view must be same size
             mImageWidth = mImageHeight = (totalWidth - (mColumnCount - 1) * mSpaceSize) / mColumnCount;
             int childCount = getChildCount();
             if (childCount < mColumnCount)
@@ -113,7 +111,7 @@ public class NineGridView extends ViewGroup
             resHeight = mImageHeight * mRawCount + (mRawCount - 1) * mSpaceSize + getPaddingTop() + getPaddingBottom();
         } else
         {
-            //非编辑模式下，控件大小取决于数据量
+            //If is non-edit mode,the size of childview depends on data size
             int dataCount = mDataList.size();
             if (mDataList != null && dataCount > 0)
             {
@@ -121,7 +119,7 @@ public class NineGridView extends ViewGroup
                 {
                     mImageWidth = mSingleImageSize > totalWidth ? totalWidth : mSingleImageSize;
                     mImageHeight = (int) (mImageWidth / mSingleImageRatio);
-                    //矫正图片显示区域大小，不允许超过最大显示范围
+                    //Resize single imageview area size,not allowed to exceed the maximum display range
                     if (mImageHeight > mSingleImageSize)
                     {
                         float ratio = mSingleImageSize * 1.0f / mImageHeight;
@@ -144,7 +142,7 @@ public class NineGridView extends ViewGroup
 
         setMeasuredDimension(resWidth, resHeight);
 
-        //测量子view
+        //Measure child view size
         int childrenCount = getChildCount();
         for (int index = 0; index < childrenCount; index++)
         {
@@ -183,12 +181,12 @@ public class NineGridView extends ViewGroup
     }
 
     /**
-     * 设置数据
+     * Set data source
      */
     public void setDataList(List<NineGridBean> dataList)
     {
         mDataList.clear();
-        //添加的数据量不能超过设置的最大数量
+        //Not allowed to exceed the maximum number
         if (dataList != null && dataList.size() > 0)
         {
             if (dataList.size() <= mMaxNum)
@@ -203,13 +201,13 @@ public class NineGridView extends ViewGroup
     }
 
     /**
-     * 增加数据
+     * Add data source
      */
     public void addDataList(List<NineGridBean> dataList)
     {
         if (mDataList.size() >= mMaxNum)
             return;
-        //添加的数据量不能超过设置的最大数量
+        //Not allowed to exceed the maximum number
         int cha = mMaxNum - mDataList.size();
         if (dataList.size() <= cha)
             mDataList.addAll(dataList);
@@ -222,15 +220,15 @@ public class NineGridView extends ViewGroup
         requestLayout();
     }
 
-    //计算行数、列数
+    //calculate the count of raw and column
     private void calRawAndColumn()
     {
         int childSize = mDataList.size();
-        //编辑模式下需要在后面显示“+”号，所以子view数量+1
+        //Increase the data size to display plus button in edit mode
         if (canShowAddMore())
             childSize++;
 
-        //计算行数
+        //calculate the raw count
         if (childSize == 0)
         {
             mRawCount = 0;
@@ -246,10 +244,10 @@ public class NineGridView extends ViewGroup
         }
     }
 
-    //初始化View
+    //Initialize child view
     private void initChildViews()
     {
-        //添加图片container
+        //add image container
         int dataSize = mDataList.size();
         for (int i = 0; i < dataSize; i++)
         {
@@ -292,7 +290,7 @@ public class NineGridView extends ViewGroup
     }
 
     /**
-     * 设置是否显示为编辑模式
+     * Set weather is in edit mode
      */
     public void setIsEditMode(boolean b)
     {
@@ -305,7 +303,7 @@ public class NineGridView extends ViewGroup
                 ((NineGirdImageContainer) childView).setIsDeleteMode(b);
         }
 
-        //添加“+”号
+        //Add plus button in edit mode
         if (canShowAddMore())
         {
             if (mImgAddData != null)
@@ -338,14 +336,14 @@ public class NineGridView extends ViewGroup
         requestLayout();
     }
 
-    //是否可以显示“+”号
+    //Check if is in edit mode
     private boolean canShowAddMore()
     {
         return mIsEditMode && mDataList.size() < mMaxNum;
     }
 
     /**
-     * 设置图片加载器
+     * Set up imageloader
      */
     public void setImageLoader(INineGridImageLoader loader)
     {
@@ -353,7 +351,7 @@ public class NineGridView extends ViewGroup
     }
 
     /**
-     * 设置列数
+     * Set column count
      */
     public void setColumnCount(int columnCount)
     {
@@ -363,7 +361,7 @@ public class NineGridView extends ViewGroup
     }
 
     /**
-     * 设置最大选取数量
+     * Set the maximum number
      */
     public void setMaxNum(int maxNum)
     {
@@ -371,9 +369,7 @@ public class NineGridView extends ViewGroup
     }
 
     /**
-     * 设置图片展示时的间隔大小
-     *
-     * @param dpValue dp值
+     * Set the space size, dip unit
      */
     public void setSpcaeSize(int dpValue)
     {
@@ -382,9 +378,7 @@ public class NineGridView extends ViewGroup
     }
 
     /**
-     * 设置单张图片展示时的尺寸
-     *
-     * @param dpValue dp值
+     * Set the size of imageview while there has only one image, dip unit
      */
     public void setSingleImageSize(int dpValue)
     {
@@ -393,16 +387,14 @@ public class NineGridView extends ViewGroup
     }
 
     /**
-     * 设置单张图片展示时的宽高比
-     *
-     * @param ratio 宽高比
+     * Set the aspect ratio of only one imageview
      */
     public void setSingleImageRatio(float ratio)
     {
         this.mSingleImageRatio = ratio;
     }
 
-    //清空所有View
+    //clear all views
     private void clearAllViews()
     {
         removeAllViews();
@@ -412,7 +404,7 @@ public class NineGridView extends ViewGroup
     }
 
     /**
-     * 获取当前数据
+     * Get data source
      */
     public List<NineGridBean> getDataList()
     {
@@ -420,7 +412,7 @@ public class NineGridView extends ViewGroup
     }
 
     /**
-     * 设置子View点击事件监听
+     * Set up child view click listener
      */
     public void setOnItemClickListener(onItemClickListener l)
     {
@@ -430,33 +422,33 @@ public class NineGridView extends ViewGroup
     public interface onItemClickListener
     {
         /**
-         * 点击“+”号
+         * Callback when clcik plus button be clicked
          *
-         * @param cha 当前数据量与最大数量的差值
+         * @param cha the diff value between current data number displayed and maximum number
          */
         void onNineGirdAddMoreClick(int cha);
 
         /**
-         * 点击图片item
+         * Callback when image be clicked
          *
-         * @param position       位置
-         * @param gridBean       图片数据
-         * @param imageContainer 图片容器
+         * @param position       position,started with 0
+         * @param gridBean       data of image be clicked
+         * @param imageContainer image container of image be clicked
          */
         void onNineGirdItemClick(int position, NineGridBean gridBean, NineGirdImageContainer imageContainer);
 
         /**
-         * 图片被删除
+         * Callback when one image be deleted
          *
-         * @param position       位置
-         * @param gridBean       图片数据
-         * @param imageContainer 图片容器
+         * @param position       position,started with 0
+         * @param gridBean       data of image be clicked
+         * @param imageContainer image container of image be clicked
          */
         void onNineGirdItemDeleted(int position, NineGridBean gridBean, NineGirdImageContainer imageContainer);
     }
 
     /*****************************************************
-     * 状态缓存
+     * State cache
      ****************************************************************/
     private final String SINGLE_IMAGE_SIZE = "singleImageSize";
     private final String SINGLE_IMAGE_RATIO = "singleImgaeRatio";
@@ -470,8 +462,8 @@ public class NineGridView extends ViewGroup
     @Override
     protected Parcelable onSaveInstanceState()
     {
-        //这里必须调用super.onSaveInstanceState()
-        //否则会报错:Derived class did not call super.onSaveInstanceState()
+        //There has to called super.onSaveInstanceState(),
+        //or throw error:Derived class did not call super.onSaveInstanceState()
         super.onSaveInstanceState();
         Bundle bundle = new Bundle();
         bundle.putInt(SINGLE_IMAGE_SIZE, mSingleImageSize);
