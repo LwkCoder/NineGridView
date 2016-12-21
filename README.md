@@ -5,6 +5,14 @@ NineGridView：九宫格图片显示器
 <br/>
 <br/>
 ###使用方法:<br/>
+1.添加Gradle依赖：
+```
+dependencies{
+         compile 'com.lwk.ninegridview:NineGridView:1.0.0'
+    }
+```
+<br/>
+2.代码中使用[部分属性可直接在布局xml中定义]：<br/>
 ```
 //设置图片加载器，这个是必须的，不然图片无法显示
 mNineGridView.setImageLoader(new GlideImageLoader());'
