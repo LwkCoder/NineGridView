@@ -17,12 +17,12 @@ dependencies {
     compile "com.android.support:support-compat:${LIB_ANDROID_SUPPORT_VERSION}"
 }
 
-version = "1.0.1"
+version = "1.0.3"
 def siteUrl = 'https://github.com/Vanish136/NineGridView'
 def gitUrl = 'https://github.com/Vanish136/NineGridView.git'
 def bintrayuser = "luowenkang"
 def bintrayapikey = "526f4f79d66758a80d7eef8d5aa05bafdaa8ee64"
-group = "com.lwkandroid.wdiget"
+group = "com.lwkandroid.widget"
 
 install {
     repositories.mavenInstaller {
@@ -76,7 +76,7 @@ javadoc {
         author true
         version true
         links "http://docs.oracle.com/javase/7/docs/api"
-        title "NineGridView 1.0.1"
+        title "NineGridView 1.0.3"
     }
 }
 

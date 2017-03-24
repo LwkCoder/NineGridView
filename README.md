@@ -8,7 +8,7 @@ NineGridView：九宫格图片显示器
 1.添加Gradle依赖：
 ```
 dependencies{
-         compile 'com.lwkandroid.wdiget:NineGridView:1.0.1'
+         compile 'com.lwkandroid.widget:NineGridView:1.0.3'
     }
 ```
 <br/>
