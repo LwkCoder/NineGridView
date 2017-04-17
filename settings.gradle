@@ -1,1 +1,1 @@
-include ':app', ':ImagePicker', ':NineGridView'
+include ':app', ':NineGridView'

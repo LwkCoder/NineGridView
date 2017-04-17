@@ -1,16 +1,19 @@
 package com.lwk.libsample;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
-import com.lwk.imagepicker.ImagePicker;
-import com.lwk.imagepicker.bean.ImageBean;
 import com.lwk.ninegridview.NineGirdImageContainer;
 import com.lwk.ninegridview.NineGridBean;
 import com.lwk.ninegridview.NineGridView;
+import com.lwkandroid.imagepicker.ImagePicker;
+import com.lwkandroid.imagepicker.data.ImageBean;
+import com.lwkandroid.imagepicker.data.ImagePickType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, NineGridView.onItemClickListener
 {
     private NineGridView mNineGridView;
+    private final int REQUEST_CODE_PICKER = 100;
+    private final int RESULT_CODE_PICKER = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,20 +62,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     public void onNineGirdAddMoreClick(int cha)
     {
         //编辑模式下，图片展示数量尚未达到最大数量时，会显示一个“+”号，点击后回调这里
-        ImagePicker.getInstance().pickMutilImage(MainActivity.this, cha, new ImagePicker.OnSelectedListener()
-        {
-            @Override
-            public void onSelected(List<ImageBean> list)
-            {
-                List<NineGridBean> datalist = new ArrayList<>();
-                for (ImageBean imageBean : list)
-                {
-                    NineGridBean nineGirdData = new NineGridBean(imageBean.getImagePath(), imageBean.getImagePath(), imageBean);
-                    datalist.add(nineGirdData);
-                }
-                mNineGridView.addDataList(datalist);
-            }
-        });
+        new ImagePicker.Builder()
+                .cachePath(Environment.getExternalStorageDirectory().getAbsolutePath())
+                .pickType(ImagePickType.MUTIL)
+                .maxNum(cha)
+                .build()
+                .start(this, REQUEST_CODE_PICKER, RESULT_CODE_PICKER);
     }
 
     @Override
@@ -85,5 +82,22 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     {
         //编辑模式下，某张图片被删除后回调这里
         Toast.makeText(this, "position=" + position + "图片被删除", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_PICKER && resultCode == RESULT_CODE_PICKER)
+        {
+            List<ImageBean> list = data.getParcelableArrayListExtra(ImagePicker.INTENT_RESULT_DATA);
+            List<NineGridBean> resultList = new ArrayList<>();
+            for (ImageBean imageBean : list)
+            {
+                NineGridBean nineGirdData = new NineGridBean(imageBean.getImagePath(), imageBean.getImagePath(), imageBean);
+                resultList.add(nineGirdData);
+            }
+            mNineGridView.addDataList(resultList);
+        }
     }
 }
