@@ -54,6 +54,12 @@ mNineGridView.setOnItemClickListener(new NineGridView.onItemClickListener()
 ###效果图:<br/>
 ![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample_pic_display.png)
 ![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample_pic_edit.png)
+<br/>
+###混淆配置：<br/>
+```
+-dontwarn com.lwk.ninegridview.**
+-keep class com.lwk.ninegridview.**{*;}
+```
 ###说明:<br/>
 1.项目中有我写的另外一个库ImagePicker，用来选择手机里的图片，仅用做配合demo演示，实际开发可以去掉。<br/>
 2.部分设计思路参考了github同名项目[NineGridView](https://github.com/jeasonlzy/NineGridView)，感谢为开源做出贡献的开发者们！
