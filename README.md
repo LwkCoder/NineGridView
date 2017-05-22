@@ -2,17 +2,20 @@ NineGridView：九宫格图片显示器
 ====
 类似微信朋友圈九宫格图片
 ------
-<br/>
-<br/>
-###使用方法:<br/>
-1.添加Gradle依赖：
+
+### 使用方法:
+
+**1.添加Gradle依赖：**
+
 ```
 dependencies{
          compile 'com.lwkandroid.widget:NineGridView:1.1.0'
     }
 ```
 <br/>
-2.代码中使用[部分属性可直接在布局xml中定义]：<br/>
+
+**2.代码中使用[部分属性可直接在布局xml中定义]：**
+
 ```
 //设置图片加载器，这个是必须的，不然图片无法显示
 mNineGridView.setImageLoader(new GlideImageLoader());'
@@ -51,15 +54,18 @@ mNineGridView.setOnItemClickListener(new NineGridView.onItemClickListener()
         });
 ```
 <br/>
-###效果图:<br/>
-![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample_pic_display.png)
+
+### 效果图:
+![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample_pic_display.png) <br />
 ![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample_pic_edit.png)
-<br/>
-###混淆配置：<br/>
+
+### 混淆配置：
+
 ```
 -dontwarn com.lwk.ninegridview.**
 -keep class com.lwk.ninegridview.**{*;}
 ```
-###说明:<br/>
+
+### 说明:
 1.项目中有我写的另外一个库ImagePicker，用来选择手机里的图片，仅用做配合demo演示，实际开发可以去掉。<br/>
 2.部分设计思路参考了github同名项目[NineGridView](https://github.com/jeasonlzy/NineGridView)，感谢为开源做出贡献的开发者们！
