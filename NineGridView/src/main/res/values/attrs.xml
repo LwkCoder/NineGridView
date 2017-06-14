@@ -7,5 +7,6 @@
         <attr name="column_count" format="integer"/>
         <attr name="is_edit_mode" format="boolean"/>
         <attr name="max_num" format="integer"/>
+        <attr name="icon_addmore" format="reference"/>
     </declare-styleable>
 </resources>

@@ -17,22 +17,33 @@ dependencies {
     compile "com.android.support:support-compat:${LIB_ANDROID_SUPPORT_VERSION}"
 }
 
+allprojects {
+    tasks.withType(Javadoc) {//兼容中文字符
+        options {
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            links "http://docs.oracle.com/javase/7/docs/api"
+        }
+    }
+}
+
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-version = "1.1.0"
+def lib_name = "NineGridView";
+version = "1.2.0"
+group = "com.lwkandroid.widget"
 def siteUrl = 'https://github.com/Vanish136/NineGridView'
 def gitUrl = 'https://github.com/Vanish136/NineGridView.git'
 def bintrayuser = properties.getProperty("user")
 def bintrayapikey = properties.getProperty("apikey")
-group = "com.lwkandroid.widget"
 
 install {
     repositories.mavenInstaller {
         pom {
             project {
                 packaging 'aar'
-                name 'NineGridView for Android'
+                name lib_name
                 url siteUrl
                 licenses {
                     license {
@@ -79,7 +90,6 @@ javadoc {
         author true
         version true
         links "http://docs.oracle.com/javase/7/docs/api"
-        title "NineGridView 1.1.0"
     }
 }
 
@@ -94,7 +104,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "NineGridView"
+        name = lib_name
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]

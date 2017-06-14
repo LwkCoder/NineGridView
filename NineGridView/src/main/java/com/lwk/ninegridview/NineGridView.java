@@ -2,7 +2,7 @@ package com.lwk.ninegridview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Bundle;
+import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -44,6 +44,8 @@ public class NineGridView extends ViewGroup
     private boolean mIsEditMode;
     //Maximum of image
     private int mMaxNum = 9;
+    //Resource Id of AddMore
+    private int mIcAddMoreResId = R.drawable.ic_ninegrid_addmore;
 
     public NineGridView(Context context)
     {
@@ -81,7 +83,9 @@ public class NineGridView extends ViewGroup
                 else if (index == R.styleable.NineGridView_is_edit_mode)
                     mIsEditMode = ta.getBoolean(index, mIsEditMode);
                 else if (index == R.styleable.NineGridView_max_num)
-                    mMaxNum = ta.getInteger(R.styleable.NineGridView_max_num, mMaxNum);
+                    mMaxNum = ta.getInteger(index, mMaxNum);
+                else if (index == R.styleable.NineGridView_icon_addmore)
+                    mIcAddMoreResId = ta.getResourceId(index, R.drawable.ic_ninegrid_addmore);
             }
             ta.recycle();
         }
@@ -310,7 +314,7 @@ public class NineGridView extends ViewGroup
                 return;
 
             mImgAddData = new NineGridImageView(getContext());
-            mImgAddData.setImageResource(R.drawable.ic_ninegrid_addmore);
+            mImgAddData.setImageResource(mIcAddMoreResId);
             int padddingSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10
                     , getContext().getResources().getDisplayMetrics());
             mImgAddData.setPadding(padddingSize, padddingSize, padddingSize, padddingSize);
@@ -412,6 +416,14 @@ public class NineGridView extends ViewGroup
     }
 
     /**
+     * Set resource id of icon for AddMore
+     */
+    public void setIcAddMoreResId(int resId)
+    {
+        this.mIcAddMoreResId = resId;
+    }
+
+    /**
      * Set up child view click listener
      */
     public void setOnItemClickListener(onItemClickListener l)
@@ -450,45 +462,104 @@ public class NineGridView extends ViewGroup
     /*****************************************************
      * State cache
      ****************************************************************/
-    private final String SINGLE_IMAGE_SIZE = "singleImageSize";
-    private final String SINGLE_IMAGE_RATIO = "singleImgaeRatio";
-    private final String SPACE_SIZE = "spaceSize";
-    private final String COLUMN_COUNT = "columnCount";
-    private final String RAW_COUNT = "rawCount";
-    private final String MAX_NUM = "maxNum";
-    private final String EDIT_MODE = "delMode";
-    private final String DATALIST = "datalist";
 
     @Override
     protected Parcelable onSaveInstanceState()
     {
-        //There has to called super.onSaveInstanceState(),
-        //or throw error:Derived class did not call super.onSaveInstanceState()
-        super.onSaveInstanceState();
-        Bundle bundle = new Bundle();
-        bundle.putInt(SINGLE_IMAGE_SIZE, mSingleImageSize);
-        bundle.putFloat(SINGLE_IMAGE_RATIO, mSingleImageRatio);
-        bundle.putInt(SPACE_SIZE, mSpaceSize);
-        bundle.putInt(COLUMN_COUNT, mColumnCount);
-        bundle.putInt(RAW_COUNT, mRawCount);
-        bundle.putInt(MAX_NUM, mMaxNum);
-        bundle.putBoolean(EDIT_MODE, mIsEditMode);
-        bundle.putParcelableArrayList(DATALIST, (ArrayList<? extends Parcelable>) mDataList);
-        return bundle;
+        SavedViewState ss = new SavedViewState(super.onSaveInstanceState());
+        ss.singleImageSize = mSingleImageSize;
+        ss.singleImageRatio = mSingleImageRatio;
+        ss.spaceSize = mSpaceSize;
+        ss.columnCount = mColumnCount;
+        ss.rawCount = mRawCount;
+        ss.maxNum = mMaxNum;
+        ss.isEditMode = mIsEditMode;
+        ss.icAddMoreResId = mIcAddMoreResId;
+        ss.dataList = mDataList;
+        return ss;
     }
 
     @Override
     protected void onRestoreInstanceState(Parcelable state)
     {
-        super.onRestoreInstanceState(state);
-        Bundle bundle = (Bundle) state;
-        this.mSingleImageSize = bundle.getInt(SINGLE_IMAGE_SIZE);
-        this.mSingleImageRatio = bundle.getFloat(SINGLE_IMAGE_RATIO);
-        this.mSpaceSize = bundle.getInt(SPACE_SIZE);
-        this.mColumnCount = bundle.getInt(COLUMN_COUNT);
-        this.mRawCount = bundle.getInt(RAW_COUNT);
-        this.mMaxNum = bundle.getInt(MAX_NUM);
-        this.mIsEditMode = bundle.getBoolean(EDIT_MODE);
-        this.mDataList = bundle.getParcelableArrayList(DATALIST);
+        if (!(state instanceof SavedViewState))
+        {
+            super.onRestoreInstanceState(state);
+            return;
+        }
+
+        SavedViewState ss = (SavedViewState) state;
+        super.onRestoreInstanceState(ss);
+        mSingleImageSize = ss.singleImageSize;
+        mSingleImageRatio = ss.singleImageRatio;
+        mSpaceSize = ss.spaceSize;
+        mColumnCount = ss.columnCount;
+        mRawCount = ss.rawCount;
+        mMaxNum = ss.maxNum;
+        mIsEditMode = ss.isEditMode;
+        mIcAddMoreResId = ss.icAddMoreResId;
+        setDataList(ss.dataList);
+    }
+
+    static class SavedViewState extends BaseSavedState
+    {
+        int singleImageSize;
+        float singleImageRatio;
+        int spaceSize;
+        int columnCount;
+        int rawCount;
+        int maxNum;
+        boolean isEditMode;
+        int icAddMoreResId;
+        List<NineGridBean> dataList;
+
+        SavedViewState(Parcelable superState)
+        {
+            super(superState);
+        }
+
+        private SavedViewState(Parcel source)
+        {
+            super(source);
+            singleImageSize = source.readInt();
+            singleImageRatio = source.readFloat();
+            spaceSize = source.readInt();
+            columnCount = source.readInt();
+            rawCount = source.readInt();
+            maxNum = source.readInt();
+            isEditMode = source.readByte() == (byte) 1;
+            icAddMoreResId = source.readInt();
+            dataList = source.readArrayList(NineGridBean.class.getClassLoader());
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags)
+        {
+            super.writeToParcel(out, flags);
+            out.writeInt(singleImageSize);
+            out.writeFloat(singleImageRatio);
+            out.writeInt(spaceSize);
+            out.writeInt(columnCount);
+            out.writeInt(rawCount);
+            out.writeInt(maxNum);
+            out.writeByte(isEditMode ? (byte) 1 : (byte) 0);
+            out.writeInt(icAddMoreResId);
+            out.writeList(dataList);
+        }
+
+        public static final Parcelable.Creator<SavedViewState> CREATOR = new Creator<SavedViewState>()
+        {
+            @Override
+            public SavedViewState createFromParcel(Parcel source)
+            {
+                return new SavedViewState(source);
+            }
+
+            @Override
+            public SavedViewState[] newArray(int size)
+            {
+                return new SavedViewState[size];
+            }
+        };
     }
 }

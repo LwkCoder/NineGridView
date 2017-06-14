@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         mNineGridView.setMaxNum(16);
         //设置图片显示间隔大小，默认3dp
         mNineGridView.setSpcaeSize(4);
+        //设置“+”号的图片
+        mNineGridView.setIcAddMoreResId(R.drawable.ic_ninegrid_addmore);
         //设置各类点击监听
         mNineGridView.setOnItemClickListener(this);
     }
