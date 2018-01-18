@@ -73,8 +73,8 @@ mNineGridView.setOnItemClickListener(new NineGridView.onItemClickListener()
 ### 混淆配置：
 
 ```
--dontwarn com.lwk.ninegridview.**
--keep class com.lwk.ninegridview.**{*;}
+-dontwarn com.lwkandroid.widget.ninegridview.**
+-keep class com.lwkandroid.widget.ninegridview.**{*;}
 ```
 
 ### 说明:
