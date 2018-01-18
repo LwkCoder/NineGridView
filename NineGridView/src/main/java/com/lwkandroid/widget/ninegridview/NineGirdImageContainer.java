@@ -1,10 +1,12 @@
-package com.lwk.ninegridview;
+package com.lwkandroid.widget.ninegridview;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import com.lwk.ninegridview.R;
 
 /**
  * ImageContainer
@@ -17,6 +19,7 @@ public class NineGirdImageContainer extends FrameLayout
     private ImageView mImgDelete;
     private boolean mIsDeleteMode;
     private onClickDeleteListener mListener;
+    private int mImageWidth, mImageHeight;
 
     public NineGirdImageContainer(Context context)
     {
@@ -62,23 +65,33 @@ public class NineGirdImageContainer extends FrameLayout
         int delSpec = MeasureSpec.makeMeasureSpec(delSize, delMode);
         mImgDelete.measure(delSpec, delSpec);
         //Measure the size of imageView
-        int imgWidthSize = 0;
-        int imgHeightSize = 0;
+        mImageWidth = 0;
+        mImageHeight = 0;
         int imgMode = MeasureSpec.EXACTLY;
         int imgWidthSpec = 0;
         int imgHeightSpec = 0;
         if (mIsDeleteMode)
         {
-            imgWidthSize = mWidth * 4 / 5;
-            imgHeightSize = mHeight * 4 / 5;
+            mImageWidth = mWidth * 4 / 5;
+            mImageHeight = mHeight * 4 / 5;
         } else
         {
-            imgWidthSize = mWidth;
-            imgHeightSize = mHeight;
+            mImageWidth = mWidth;
+            mImageHeight = mHeight;
         }
-        imgWidthSpec = MeasureSpec.makeMeasureSpec(imgWidthSize, imgMode);
-        imgHeightSpec = MeasureSpec.makeMeasureSpec(imgHeightSize, imgMode);
+        imgWidthSpec = MeasureSpec.makeMeasureSpec(mImageWidth, imgMode);
+        imgHeightSpec = MeasureSpec.makeMeasureSpec(mImageHeight, imgMode);
         mImageView.measure(imgWidthSpec, imgHeightSpec);
+    }
+
+    public int getImageWidth()
+    {
+        return mImageWidth;
+    }
+
+    public int getImageHeight()
+    {
+        return mImageHeight;
     }
 
     /**

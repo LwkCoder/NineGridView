@@ -1,4 +1,4 @@
-package com.lwk.ninegridview;
+package com.lwkandroid.widget.ninegridview;
 
 import android.content.Context;
 import android.util.AttributeSet;

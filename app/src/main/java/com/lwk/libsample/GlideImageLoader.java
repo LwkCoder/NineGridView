@@ -4,7 +4,8 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.lwk.ninegridview.INineGridImageLoader;
+import com.bumptech.glide.request.RequestOptions;
+import com.lwkandroid.widget.ninegridview.INineGridImageLoader;
 
 /**
  * Created by LWK
@@ -23,6 +24,8 @@ public class GlideImageLoader implements INineGridImageLoader
     @Override
     public void displayNineGridImage(Context context, String url, ImageView imageView, int width, int height)
     {
-        Glide.with(context).load(url).override(width, height).into(imageView);
+        Glide.with(context).load(url)
+                .apply(new RequestOptions().override(width, height))
+                .into(imageView);
     }
 }

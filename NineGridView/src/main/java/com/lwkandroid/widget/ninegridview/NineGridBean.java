@@ -1,4 +1,4 @@
-package com.lwk.ninegridview;
+package com.lwkandroid.widget.ninegridview;
 
 import android.os.Parcel;
 import android.os.Parcelable;

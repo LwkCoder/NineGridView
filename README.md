@@ -6,10 +6,19 @@ NineGridView：九宫格图片显示器
 ### 使用方法:
 
 **1.添加Gradle依赖：**
+【最新版本号以[这里](https://github.com/Vanish136/NineGridView/releases)为准】
 
 ```
+#last-verison请查看上面的最新版本号
+
+#AndroidStudio3.0以下
 dependencies{
-         compile 'com.lwkandroid.widget:NineGridView:1.2.0'
+         compile 'com.lwkandroid.widget:NineGridView:last-version'
+    }
+
+#AndroidStudio3.0以上
+dependencies{
+         implementation 'com.lwkandroid.widget:NineGridView:last-version'
     }
 ```
 <br/>

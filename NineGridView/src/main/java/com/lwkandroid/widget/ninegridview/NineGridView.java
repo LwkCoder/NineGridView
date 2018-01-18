@@ -1,4 +1,4 @@
-package com.lwk.ninegridview;
+package com.lwkandroid.widget.ninegridview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,6 +11,8 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.lwk.ninegridview.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -257,22 +259,8 @@ public class NineGridView extends ViewGroup
         {
             final NineGridBean gridBean = mDataList.get(i);
             final NineGirdImageContainer imageContainer = new NineGirdImageContainer(getContext());
-            if (mImageLoader != null)
-                mImageLoader.displayNineGridImage(getContext(), gridBean.getThumbUrl(), imageContainer.getImageView());
-            else
-                Log.w("NineGridView", "You'd better set a imageloader!!!!");
-
             imageContainer.setIsDeleteMode(mIsEditMode);
             final int position = i;
-            imageContainer.getImageView().setOnClickListener(new OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    if (mListener != null)
-                        mListener.onNineGirdItemClick(position, gridBean, imageContainer);
-                }
-            });
             imageContainer.setOnClickDeleteListener(new NineGirdImageContainer.onClickDeleteListener()
             {
                 @Override
@@ -287,7 +275,36 @@ public class NineGridView extends ViewGroup
                         mListener.onNineGirdItemDeleted(position, gridBean, imageContainer);
                 }
             });
+            imageContainer.getImageView().setOnClickListener(new OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    if (mListener != null)
+                        mListener.onNineGirdItemClick(position, gridBean, imageContainer);
+                }
+            });
             addView(imageContainer, position);
+
+            imageContainer.post(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    if (mImageLoader != null)
+                    {
+                        if (imageContainer.getImageWidth() != 0 && imageContainer.getImageWidth() != 0)
+                            mImageLoader.displayNineGridImage(getContext(), gridBean.getThumbUrl(), imageContainer.getImageView()
+                                    , imageContainer.getImageWidth(), imageContainer.getImageHeight());
+                        else
+                            mImageLoader.displayNineGridImage(getContext(), gridBean.getThumbUrl(), imageContainer.getImageView());
+
+                    } else
+                    {
+                        Log.w("NineGridView", "Can not display the image of NineGridView, you'd better set a imageloader!!!!");
+                    }
+                }
+            });
         }
 
         setIsEditMode(mIsEditMode);

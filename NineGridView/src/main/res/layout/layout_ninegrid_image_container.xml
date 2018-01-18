@@ -3,7 +3,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
-    <com.lwk.ninegridview.NineGridImageView
+    <com.lwkandroid.widget.ninegridview.NineGridImageView
         android:id="@+id/img_ninegrid_imagecontainer_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

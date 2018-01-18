@@ -8,9 +8,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
-import com.lwk.ninegridview.NineGirdImageContainer;
-import com.lwk.ninegridview.NineGridBean;
-import com.lwk.ninegridview.NineGridView;
+import com.lwkandroid.widget.ninegridview.NineGirdImageContainer;
+import com.lwkandroid.widget.ninegridview.NineGridBean;
+import com.lwkandroid.widget.ninegridview.NineGridView;
 import com.lwkandroid.imagepicker.ImagePicker;
 import com.lwkandroid.imagepicker.data.ImageBean;
 import com.lwkandroid.imagepicker.data.ImagePickType;
@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 {
     private NineGridView mNineGridView;
     private final int REQUEST_CODE_PICKER = 100;
-    private final int RESULT_CODE_PICKER = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,12 +63,11 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     public void onNineGirdAddMoreClick(int cha)
     {
         //编辑模式下，图片展示数量尚未达到最大数量时，会显示一个“+”号，点击后回调这里
-        new ImagePicker.Builder()
+        new ImagePicker()
                 .cachePath(Environment.getExternalStorageDirectory().getAbsolutePath())
-                .pickType(ImagePickType.MUTIL)
+                .pickType(ImagePickType.MULTI)
                 .maxNum(cha)
-                .build()
-                .start(this, REQUEST_CODE_PICKER, RESULT_CODE_PICKER);
+                .start(this, REQUEST_CODE_PICKER);
     }
 
     @Override
@@ -90,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_PICKER && resultCode == RESULT_CODE_PICKER)
+        if (requestCode == REQUEST_CODE_PICKER && resultCode == RESULT_OK && data != null)
         {
             List<ImageBean> list = data.getParcelableArrayListExtra(ImagePicker.INTENT_RESULT_DATA);
             List<NineGridBean> resultList = new ArrayList<>();
