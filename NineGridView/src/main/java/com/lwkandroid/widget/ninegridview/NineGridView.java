@@ -48,6 +48,10 @@ public class NineGridView extends ViewGroup
     private int mMaxNum = 9;
     //Resource Id of AddMore
     private int mIcAddMoreResId = R.drawable.ic_ninegrid_addmore;
+    //Resource Id of the delete icon
+    private int mIcDelete = R.drawable.ic_ninegridimage_delete;
+    //Ratio of delete icon with parent view
+    private float mRatioOfDelete = 0.35f;
 
     public NineGridView(Context context)
     {
@@ -87,7 +91,11 @@ public class NineGridView extends ViewGroup
                 else if (index == R.styleable.NineGridView_max_num)
                     mMaxNum = ta.getInteger(index, mMaxNum);
                 else if (index == R.styleable.NineGridView_icon_addmore)
-                    mIcAddMoreResId = ta.getResourceId(index, R.drawable.ic_ninegrid_addmore);
+                    mIcAddMoreResId = ta.getResourceId(index, mIcAddMoreResId);
+                else if (index == R.styleable.NineGridView_icon_delete)
+                    mIcDelete = ta.getResourceId(index, mIcDelete);
+                else if (index == R.styleable.NineGridView_delete_ratio)
+                    mRatioOfDelete = ta.getFloat(index, mRatioOfDelete);
             }
             ta.recycle();
         }
@@ -260,6 +268,8 @@ public class NineGridView extends ViewGroup
             final NineGridBean gridBean = mDataList.get(i);
             final NineGirdImageContainer imageContainer = new NineGirdImageContainer(getContext());
             imageContainer.setIsDeleteMode(mIsEditMode);
+            imageContainer.setRatioOfDeleteIcon(mRatioOfDelete);
+            imageContainer.setDeleteIcon(mIcDelete);
             final int position = i;
             imageContainer.setOnClickDeleteListener(new NineGirdImageContainer.onClickDeleteListener()
             {
@@ -377,8 +387,14 @@ public class NineGridView extends ViewGroup
     public void setColumnCount(int columnCount)
     {
         this.mColumnCount = columnCount;
-        calRawAndColumn();
-        requestLayout();
+    }
+
+    /**
+     * Set the ratio for the size of delete icon with the Parent View
+     */
+    public void setRatioOfDeleteIcon(float ratio)
+    {
+        this.mRatioOfDelete = ratio;
     }
 
     /**
@@ -441,6 +457,14 @@ public class NineGridView extends ViewGroup
     }
 
     /**
+     * Set resource id of the icon of delete
+     */
+    public void setIcDeleteResId(int resId)
+    {
+        this.mIcDelete = resId;
+    }
+
+    /**
      * Set up child view click listener
      */
     public void setOnItemClickListener(onItemClickListener l)
@@ -492,6 +516,8 @@ public class NineGridView extends ViewGroup
         ss.maxNum = mMaxNum;
         ss.isEditMode = mIsEditMode;
         ss.icAddMoreResId = mIcAddMoreResId;
+        ss.icDeleteResId = mIcDelete;
+        ss.ratioDelete = mRatioOfDelete;
         ss.dataList = mDataList;
         return ss;
     }
@@ -515,6 +541,8 @@ public class NineGridView extends ViewGroup
         mMaxNum = ss.maxNum;
         mIsEditMode = ss.isEditMode;
         mIcAddMoreResId = ss.icAddMoreResId;
+        mIcDelete = ss.icDeleteResId;
+        mRatioOfDelete = ss.ratioDelete;
         setDataList(ss.dataList);
     }
 
@@ -529,6 +557,8 @@ public class NineGridView extends ViewGroup
         boolean isEditMode;
         int icAddMoreResId;
         List<NineGridBean> dataList;
+        int icDeleteResId;
+        float ratioDelete;
 
         SavedViewState(Parcelable superState)
         {
@@ -547,6 +577,8 @@ public class NineGridView extends ViewGroup
             isEditMode = source.readByte() == (byte) 1;
             icAddMoreResId = source.readInt();
             dataList = source.readArrayList(NineGridBean.class.getClassLoader());
+            icDeleteResId = source.readInt();
+            ratioDelete = source.readFloat();
         }
 
         @Override
@@ -562,6 +594,8 @@ public class NineGridView extends ViewGroup
             out.writeByte(isEditMode ? (byte) 1 : (byte) 0);
             out.writeInt(icAddMoreResId);
             out.writeList(dataList);
+            out.writeInt(icDeleteResId);
+            out.writeFloat(ratioDelete);
         }
 
         public static final Parcelable.Creator<SavedViewState> CREATOR = new Creator<SavedViewState>()

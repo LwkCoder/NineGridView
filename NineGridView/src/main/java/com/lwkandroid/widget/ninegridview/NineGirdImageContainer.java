@@ -20,6 +20,8 @@ public class NineGirdImageContainer extends FrameLayout
     private boolean mIsDeleteMode;
     private onClickDeleteListener mListener;
     private int mImageWidth, mImageHeight;
+    private int mIcDelete = R.drawable.ic_ninegridimage_delete;
+    private float mRatio = 0.35f;
 
     public NineGirdImageContainer(Context context)
     {
@@ -39,6 +41,7 @@ public class NineGirdImageContainer extends FrameLayout
         inflate(context, R.layout.layout_ninegrid_image_container, this);
         mImageView = (NineGridImageView) findViewById(R.id.img_ninegrid_imagecontainer_content);
         mImgDelete = (ImageView) findViewById(R.id.img_ninegrid_imagecontainer_delete);
+        mImgDelete.setImageResource(mIcDelete);
         mImgDelete.setOnClickListener(new OnClickListener()
         {
             @Override
@@ -60,16 +63,14 @@ public class NineGirdImageContainer extends FrameLayout
         setMeasuredDimension(mWidth, mHeight);
 
         //Measure the size of the delete button
-        int delSize = mWidth * 1 / 5;
+        int delSize = (int) (mWidth * mRatio);
         int delMode = MeasureSpec.EXACTLY;
         int delSpec = MeasureSpec.makeMeasureSpec(delSize, delMode);
         mImgDelete.measure(delSpec, delSpec);
         //Measure the size of imageView
         mImageWidth = 0;
         mImageHeight = 0;
-        int imgMode = MeasureSpec.EXACTLY;
-        int imgWidthSpec = 0;
-        int imgHeightSpec = 0;
+        int imgMode = MeasureSpec.EXACTLY, imgWidthSpec = 0, imgHeightSpec = 0;
         if (mIsDeleteMode)
         {
             mImageWidth = mWidth * 4 / 5;
@@ -117,11 +118,31 @@ public class NineGirdImageContainer extends FrameLayout
     }
 
     /**
+     * Set the resource id of the delete
+     */
+    public void setDeleteIcon(int resId)
+    {
+        this.mIcDelete = resId;
+        if (mImgDelete != null)
+            mImgDelete.setImageResource(mIcDelete);
+    }
+
+    /**
      * If is in the delete mode
      */
     public boolean isDeleteMode()
     {
         return mIsDeleteMode;
+    }
+
+    /**
+     * Set the ratio for the size of delete icon with the Parent View
+     *
+     * @param ratio
+     */
+    public void setRatioOfDeleteIcon(float ratio)
+    {
+        this.mRatio = ratio;
     }
 
     /**

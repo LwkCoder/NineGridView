@@ -8,5 +8,7 @@
         <attr name="is_edit_mode" format="boolean"/>
         <attr name="max_num" format="integer"/>
         <attr name="icon_addmore" format="reference"/>
+        <attr name="icon_delete" format="reference"/>
+        <attr name="delete_ratio" format="float"/>
     </declare-styleable>
 </resources>

@@ -40,6 +40,10 @@ mNineGridView.setSingleImageRatio(0.8f);
 mNineGridView.setMaxNum(16);
 //设置图片显示间隔大小，默认3dp
 mNineGridView.setSpcaeSize(4);
+//设置删除图片
+mNineGridView.setIcDeleteResId(R.drawable.ic_block_black_24dp);
+//设置删除图片与父视图的大小比例，默认0.35f
+mNineGridView.setRatioOfDeleteIcon(0.4f);
 //设置“+”号的图片
 mNineGridView.setIcAddMoreResId(R.drawable.ic_ninegrid_addmore);
 //设置各类点击监听
