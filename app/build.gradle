@@ -30,14 +30,9 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support:appcompat-v7:${LIB_ANDROID_SUPPORT_VERSION}"
-    implementation "com.android.support:support-v4:${LIB_ANDROID_SUPPORT_VERSION}"
-    implementation("com.github.bumptech.glide:glide:${LIB_GLIDE_VERSION}") {
-        exclude(group: 'com.android.support', module: 'support-v4')
-    }
-    implementation("com.lwkandroid:ImagePicker:${LIB_IMAGEPICKER_VERSION}") {
-        exclude(group: 'com.android.support', module: 'support-v4')
-        exclude(group: 'com.github.bumptech.glide', module: 'glide')
-    }
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "com.github.bumptech.glide:glide:${LIB_GLIDE_VERSION}"
+    implementation "com.lwkandroid:ImagePicker:${LIB_IMAGEPICKER_VERSION}"
     implementation project(':NineGridView')
 }
