@@ -34,6 +34,8 @@ public class NineGridImageView extends ImageView
             case MotionEvent.ACTION_UP:
                 setAlpha(1.0f);
                 break;
+            default:
+                break;
         }
         return super.dispatchTouchEvent(event);
     }

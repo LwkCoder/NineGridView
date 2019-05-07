@@ -8,17 +8,28 @@ import android.os.Parcelable;
  * NOTE:T class must implemente the interface of Parcelable
  */
 
-public class NineGridBean<T extends Parcelable> implements Parcelable
+public class NineGridBean implements Parcelable
 {
     private String thumbUrl;
     private String originUrl;
-    private T t;
+    private Parcelable data;
 
-    public NineGridBean(String thumbUrl, String originUrl, T t)
+    public NineGridBean(String originUrl)
+    {
+        this.originUrl = originUrl;
+    }
+
+    public NineGridBean(String originUrl, String thumbUrl)
     {
         this.thumbUrl = thumbUrl;
         this.originUrl = originUrl;
-        this.t = t;
+    }
+
+    public NineGridBean(String originUrl, String thumbUrl, Parcelable data)
+    {
+        this.thumbUrl = thumbUrl;
+        this.originUrl = originUrl;
+        this.data = data;
     }
 
     public String getThumbUrl()
@@ -41,14 +52,14 @@ public class NineGridBean<T extends Parcelable> implements Parcelable
         this.originUrl = originUrl;
     }
 
-    public T getT()
+    public Parcelable getData()
     {
-        return t;
+        return data;
     }
 
-    public void setT(T t)
+    public void setData(Parcelable data)
     {
-        this.t = t;
+        this.data = data;
     }
 
     @Override
@@ -57,7 +68,7 @@ public class NineGridBean<T extends Parcelable> implements Parcelable
         return "NineGridBean{" +
                 "thumbUrl='" + thumbUrl + '\'' +
                 ", originUrl='" + originUrl + '\'' +
-                ", t=" + t +
+                ", data=" + data +
                 '}';
     }
 
@@ -72,25 +83,17 @@ public class NineGridBean<T extends Parcelable> implements Parcelable
     {
         dest.writeString(this.thumbUrl);
         dest.writeString(this.originUrl);
-        dest.writeString(t.getClass().getName());//Write the class name of T class
-        dest.writeParcelable(this.t, flags);
+        dest.writeParcelable(this.data, flags);
     }
 
     protected NineGridBean(Parcel in)
     {
         this.thumbUrl = in.readString();
         this.originUrl = in.readString();
-        String tClassName = in.readString();//Read the class name of T class
-        try
-        {
-            this.t = in.readParcelable(Class.forName(tClassName).getClassLoader());
-        } catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
+        this.data = in.readParcelable(Parcelable.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<NineGridBean> CREATOR = new Parcelable.Creator<NineGridBean>()
+    public static final Creator<NineGridBean> CREATOR = new Creator<NineGridBean>()
     {
         @Override
         public NineGridBean createFromParcel(Parcel source)

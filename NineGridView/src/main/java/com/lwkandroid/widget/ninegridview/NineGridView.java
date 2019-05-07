@@ -2,6 +2,7 @@ package com.lwkandroid.widget.ninegridview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -47,11 +48,11 @@ public class NineGridView extends ViewGroup
     //Maximum of image
     private int mMaxNum = 9;
     //Resource Id of AddMore
-    private int mIcAddMoreResId = R.drawable.ic_ninegrid_addmore;
+    private int mIcAddMoreResId = R.drawable.ic_ngv_add_pic;
     //Resource Id of the delete icon
-    private int mIcDelete = R.drawable.ic_ninegridimage_delete;
+    private int mIcDelete = R.drawable.ic_ngv_delete;
     //Ratio of delete icon with parent view
-    private float mRatioOfDelete = 0.35f;
+    private float mRatioOfDelete = 0.25f;
 
     public NineGridView(Context context)
     {
@@ -270,6 +271,10 @@ public class NineGridView extends ViewGroup
             imageContainer.setIsDeleteMode(mIsEditMode);
             imageContainer.setRatioOfDeleteIcon(mRatioOfDelete);
             imageContainer.setDeleteIcon(mIcDelete);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            {
+                imageContainer.getImageView().setTransitionName(gridBean.getOriginUrl());
+            }
             final int position = i;
             imageContainer.setOnClickDeleteListener(new NineGirdImageContainer.onClickDeleteListener()
             {

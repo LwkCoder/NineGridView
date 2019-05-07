@@ -20,7 +20,7 @@ public class NineGirdImageContainer extends FrameLayout
     private boolean mIsDeleteMode;
     private onClickDeleteListener mListener;
     private int mImageWidth, mImageHeight;
-    private int mIcDelete = R.drawable.ic_ninegridimage_delete;
+    private int mIcDelete = R.drawable.ic_ngv_delete;
     private float mRatio = 0.35f;
 
     public NineGirdImageContainer(Context context)

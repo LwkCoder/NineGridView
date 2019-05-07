@@ -17,6 +17,6 @@
         android:layout_gravity="top|right"
         android:foregroundGravity="top|right"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_ninegridimage_delete"/>
+        android:src="@drawable/ic_ngv_delete"/>
 
 </FrameLayout>

@@ -3,20 +3,21 @@ package com.lwk.libsample;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
-import com.lwkandroid.widget.ninegridview.NineGirdImageContainer;
-import com.lwkandroid.widget.ninegridview.NineGridBean;
-import com.lwkandroid.widget.ninegridview.NineGridView;
 import com.lwkandroid.imagepicker.ImagePicker;
 import com.lwkandroid.imagepicker.data.ImageBean;
 import com.lwkandroid.imagepicker.data.ImagePickType;
+import com.lwkandroid.widget.ninegridview.NineGirdImageContainer;
+import com.lwkandroid.widget.ninegridview.NineGridBean;
+import com.lwkandroid.widget.ninegridview.NineGridView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, NineGridView.onItemClickListener
 {
@@ -48,11 +49,11 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         //设置图片显示间隔大小，默认3dp
         mNineGridView.setSpcaeSize(4);
         //设置删除图片
-        mNineGridView.setIcDeleteResId(R.drawable.ic_block_black_24dp);
-        //设置删除图片与父视图的大小比例，默认0.35f
-        mNineGridView.setRatioOfDeleteIcon(0.4f);
+//        mNineGridView.setIcDeleteResId(R.drawable.ic_block_black_24dp);
+        //设置删除图片与父视图的大小比例，默认0.25f
+        mNineGridView.setRatioOfDeleteIcon(0.3f);
         //设置“+”号的图片
-        mNineGridView.setIcAddMoreResId(R.drawable.ic_ninegrid_addmore);
+        mNineGridView.setIcAddMoreResId(R.drawable.ic_ngv_add_pic);
         //设置各类点击监听
         mNineGridView.setOnItemClickListener(this);
     }
