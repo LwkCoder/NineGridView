@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         //设置图片显示间隔大小，默认3dp
         mNineGridView.setSpcaeSize(4);
         //设置删除图片
-//        mNineGridView.setIcDeleteResId(R.drawable.ic_block_black_24dp);
+        //        mNineGridView.setIcDeleteResId(R.drawable.ic_block_black_24dp);
         //设置删除图片与父视图的大小比例，默认0.25f
         mNineGridView.setRatioOfDeleteIcon(0.3f);
         //设置“+”号的图片
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             List<NineGridBean> resultList = new ArrayList<>();
             for (ImageBean imageBean : list)
             {
-                NineGridBean nineGirdData = new NineGridBean(imageBean.getImagePath(), imageBean.getImagePath(), imageBean);
+                NineGridBean nineGirdData = new NineGridBean(imageBean.getImagePath());
                 resultList.add(nineGirdData);
             }
             mNineGridView.addDataList(resultList);

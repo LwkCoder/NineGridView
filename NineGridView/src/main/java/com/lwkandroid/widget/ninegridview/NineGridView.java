@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -80,23 +81,33 @@ public class NineGridView extends ViewGroup
             {
                 int index = ta.getIndex(i);
                 if (index == R.styleable.NineGridView_sapce_size)
+                {
                     mSpaceSize = ta.getDimensionPixelSize(index, mSpaceSize);
-                else if (index == R.styleable.NineGridView_single_image_ratio)
+                } else if (index == R.styleable.NineGridView_single_image_ratio)
+                {
                     mSingleImageRatio = ta.getFloat(index, mSingleImageRatio);
-                else if (index == R.styleable.NineGridView_single_image_size)
+                } else if (index == R.styleable.NineGridView_single_image_size)
+                {
                     mSingleImageSize = ta.getDimensionPixelSize(index, mSingleImageSize);
-                else if (index == R.styleable.NineGridView_column_count)
+                } else if (index == R.styleable.NineGridView_column_count)
+                {
                     mColumnCount = ta.getInteger(index, mColumnCount);
-                else if (index == R.styleable.NineGridView_is_edit_mode)
+                } else if (index == R.styleable.NineGridView_is_edit_mode)
+                {
                     mIsEditMode = ta.getBoolean(index, mIsEditMode);
-                else if (index == R.styleable.NineGridView_max_num)
+                } else if (index == R.styleable.NineGridView_max_num)
+                {
                     mMaxNum = ta.getInteger(index, mMaxNum);
-                else if (index == R.styleable.NineGridView_icon_addmore)
+                } else if (index == R.styleable.NineGridView_icon_addmore)
+                {
                     mIcAddMoreResId = ta.getResourceId(index, mIcAddMoreResId);
-                else if (index == R.styleable.NineGridView_icon_delete)
+                } else if (index == R.styleable.NineGridView_icon_delete)
+                {
                     mIcDelete = ta.getResourceId(index, mIcDelete);
-                else if (index == R.styleable.NineGridView_delete_ratio)
+                } else if (index == R.styleable.NineGridView_delete_ratio)
+                {
                     mRatioOfDelete = ta.getFloat(index, mRatioOfDelete);
+                }
             }
             ta.recycle();
         }
@@ -120,9 +131,12 @@ public class NineGridView extends ViewGroup
             mImageWidth = mImageHeight = (totalWidth - (mColumnCount - 1) * mSpaceSize) / mColumnCount;
             int childCount = getChildCount();
             if (childCount < mColumnCount)
+            {
                 resWidth = mImageWidth * childCount + (childCount - 1) * mSpaceSize + getPaddingLeft() + getPaddingRight();
-            else
+            } else
+            {
                 resWidth = mImageWidth * mColumnCount + (mColumnCount - 1) * mSpaceSize + getPaddingLeft() + getPaddingRight();
+            }
             resHeight = mImageHeight * mRawCount + (mRawCount - 1) * mSpaceSize + getPaddingTop() + getPaddingBottom();
         } else
         {
@@ -147,9 +161,12 @@ public class NineGridView extends ViewGroup
                 {
                     mImageWidth = mImageHeight = (totalWidth - (mColumnCount - 1) * mSpaceSize) / mColumnCount;
                     if (dataCount < mColumnCount)
+                    {
                         resWidth = mImageWidth * dataCount + (dataCount - 1) * mSpaceSize + getPaddingLeft() + getPaddingRight();
-                    else
+                    } else
+                    {
                         resWidth = mImageWidth * mColumnCount + (mColumnCount - 1) * mSpaceSize + getPaddingLeft() + getPaddingRight();
+                    }
                     resHeight = mImageHeight * mRawCount + (mRawCount - 1) * mSpaceSize + getPaddingTop() + getPaddingBottom();
                 }
             }
@@ -205,9 +222,12 @@ public class NineGridView extends ViewGroup
         if (dataList != null && dataList.size() > 0)
         {
             if (dataList.size() <= mMaxNum)
+            {
                 mDataList.addAll(dataList);
-            else
+            } else
+            {
                 mDataList.addAll(dataList.subList(0, mMaxNum - 1));
+            }
         }
         clearAllViews();
         calRawAndColumn();
@@ -221,13 +241,18 @@ public class NineGridView extends ViewGroup
     public void addDataList(List<NineGridBean> dataList)
     {
         if (mDataList.size() >= mMaxNum)
+        {
             return;
+        }
         //Not allowed to exceed the maximum number
         int cha = mMaxNum - mDataList.size();
         if (dataList.size() <= cha)
+        {
             mDataList.addAll(dataList);
-        else
+        } else
+        {
             mDataList.addAll(dataList.subList(0, cha - 1));
+        }
 
         clearAllViews();
         calRawAndColumn();
@@ -241,7 +266,9 @@ public class NineGridView extends ViewGroup
         int childSize = mDataList.size();
         //Increase the data size to display plus button in edit mode
         if (canShowAddMore())
+        {
             childSize++;
+        }
 
         //calculate the raw count
         if (childSize == 0)
@@ -253,9 +280,12 @@ public class NineGridView extends ViewGroup
         } else
         {
             if (childSize % mColumnCount == 0)
+            {
                 mRawCount = childSize / mColumnCount;
-            else
+            } else
+            {
                 mRawCount = childSize / mColumnCount + 1;
+            }
         }
     }
 
@@ -287,7 +317,9 @@ public class NineGridView extends ViewGroup
                     initChildViews();
                     requestLayout();
                     if (mListener != null)
+                    {
                         mListener.onNineGirdItemDeleted(position, gridBean, imageContainer);
+                    }
                 }
             });
             imageContainer.getImageView().setOnClickListener(new OnClickListener()
@@ -296,7 +328,9 @@ public class NineGridView extends ViewGroup
                 public void onClick(View view)
                 {
                     if (mListener != null)
+                    {
                         mListener.onNineGirdItemClick(position, gridBean, imageContainer);
+                    }
                 }
             });
             addView(imageContainer, position);
@@ -308,11 +342,15 @@ public class NineGridView extends ViewGroup
                 {
                     if (mImageLoader != null)
                     {
+                        String url = TextUtils.isEmpty(gridBean.getThumbUrl()) ? gridBean.getOriginUrl() : gridBean.getThumbUrl();
                         if (imageContainer.getImageWidth() != 0 && imageContainer.getImageWidth() != 0)
-                            mImageLoader.displayNineGridImage(getContext(), gridBean.getThumbUrl(), imageContainer.getImageView()
+                        {
+                            mImageLoader.displayNineGridImage(getContext(), url, imageContainer.getImageView()
                                     , imageContainer.getImageWidth(), imageContainer.getImageHeight());
-                        else
-                            mImageLoader.displayNineGridImage(getContext(), gridBean.getThumbUrl(), imageContainer.getImageView());
+                        } else
+                        {
+                            mImageLoader.displayNineGridImage(getContext(), url, imageContainer.getImageView());
+                        }
 
                     } else
                     {
@@ -336,14 +374,18 @@ public class NineGridView extends ViewGroup
         {
             View childView = getChildAt(i);
             if (childView instanceof NineGirdImageContainer)
+            {
                 ((NineGirdImageContainer) childView).setIsDeleteMode(b);
+            }
         }
 
         //Add plus button in edit mode
         if (canShowAddMore())
         {
             if (mImgAddData != null)
+            {
                 return;
+            }
 
             mImgAddData = new NineGridImageView(getContext());
             mImgAddData.setImageResource(mIcAddMoreResId);
@@ -357,14 +399,18 @@ public class NineGridView extends ViewGroup
                 public void onClick(View view)
                 {
                     if (mListener != null)
+                    {
                         mListener.onNineGirdAddMoreClick(mMaxNum - mDataList.size());
+                    }
                 }
             });
             addView(mImgAddData);
         } else
         {
             if (mImgAddData != null)
+            {
                 removeView(mImgAddData);
+            }
             mImgAddData = null;
         }
 
@@ -441,7 +487,9 @@ public class NineGridView extends ViewGroup
     {
         removeAllViews();
         if (mImgAddData != null)
+        {
             removeView(mImgAddData);
+        }
         mImgAddData = null;
     }
 
