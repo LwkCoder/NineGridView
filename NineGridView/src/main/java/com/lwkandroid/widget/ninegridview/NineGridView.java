@@ -303,7 +303,9 @@ public class NineGridView extends ViewGroup
             imageContainer.setDeleteIcon(mIcDelete);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             {
-                imageContainer.getImageView().setTransitionName(gridBean.getOriginUrl());
+                String transitionName = TextUtils.isEmpty(gridBean.getTransitionName()) ?
+                        gridBean.getOriginUrl() : gridBean.getTransitionName();
+                imageContainer.getImageView().setTransitionName(transitionName);
             }
             final int position = i;
             imageContainer.setOnClickDeleteListener(new NineGirdImageContainer.onClickDeleteListener()

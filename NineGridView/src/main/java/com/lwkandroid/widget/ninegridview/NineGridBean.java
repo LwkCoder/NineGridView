@@ -11,6 +11,7 @@ public class NineGridBean implements Parcelable
 {
     private String thumbUrl;
     private String originUrl;
+    private String transitionName;
 
     public NineGridBean(String originUrl)
     {
@@ -23,6 +24,12 @@ public class NineGridBean implements Parcelable
         this.originUrl = originUrl;
     }
 
+    public NineGridBean(String thumbUrl, String originUrl, String transitionName)
+    {
+        this.thumbUrl = thumbUrl;
+        this.originUrl = originUrl;
+        this.transitionName = transitionName;
+    }
 
     public String getThumbUrl()
     {
@@ -44,12 +51,23 @@ public class NineGridBean implements Parcelable
         this.originUrl = originUrl;
     }
 
+    public String getTransitionName()
+    {
+        return transitionName;
+    }
+
+    public void setTransitionName(String transitionName)
+    {
+        this.transitionName = transitionName;
+    }
+
     @Override
     public String toString()
     {
         return "NineGridBean{" +
                 "thumbUrl='" + thumbUrl + '\'' +
                 ", originUrl='" + originUrl + '\'' +
+                ", transitionName='" + transitionName + '\'' +
                 '}';
     }
 
@@ -64,12 +82,14 @@ public class NineGridBean implements Parcelable
     {
         dest.writeString(this.thumbUrl);
         dest.writeString(this.originUrl);
+        dest.writeString(this.transitionName);
     }
 
     protected NineGridBean(Parcel in)
     {
         this.thumbUrl = in.readString();
         this.originUrl = in.readString();
+        this.transitionName = in.readString();
     }
 
     public static final Creator<NineGridBean> CREATOR = new Creator<NineGridBean>()
