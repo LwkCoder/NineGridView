@@ -402,7 +402,7 @@ public class NineGridView extends ViewGroup
                 {
                     if (mListener != null)
                     {
-                        mListener.onNineGirdAddMoreClick(mMaxNum - mDataList.size());
+                        mListener.onNineGirdAddMoreClick(getDiffValue());
                     }
                 }
             });
@@ -509,6 +509,10 @@ public class NineGridView extends ViewGroup
     public void setIcAddMoreResId(int resId)
     {
         this.mIcAddMoreResId = resId;
+        if (mImgAddData != null)
+        {
+            mImgAddData.setImageResource(resId);
+        }
     }
 
     /**
@@ -517,6 +521,22 @@ public class NineGridView extends ViewGroup
     public void setIcDeleteResId(int resId)
     {
         this.mIcDelete = resId;
+        //        for (int i = 0, count = getChildCount(); i < count; i++)
+        //        {
+        //            View child = getChildAt(i);
+        //            if (child instanceof NineGirdImageContainer)
+        //            {
+        //                ((NineGirdImageContainer) child).setDeleteIcon(resId);
+        //            }
+        //        }
+    }
+
+    /**
+     * Return the diff value between current data number displayed and maximum number
+     */
+    public int getDiffValue()
+    {
+        return mMaxNum - mDataList.size();
     }
 
     /**
@@ -532,9 +552,9 @@ public class NineGridView extends ViewGroup
         /**
          * Callback when clcik plus button be clicked
          *
-         * @param cha the diff value between current data number displayed and maximum number
+         * @param dValue the diff value between current data number displayed and maximum number
          */
-        void onNineGirdAddMoreClick(int cha);
+        void onNineGirdAddMoreClick(int dValue);
 
         /**
          * Callback when image be clicked

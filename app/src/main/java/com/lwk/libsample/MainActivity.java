@@ -49,11 +49,11 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         //设置图片显示间隔大小，默认3dp
         mNineGridView.setSpcaeSize(4);
         //设置删除图片
-        //        mNineGridView.setIcDeleteResId(R.drawable.ic_block_black_24dp);
+        mNineGridView.setIcDeleteResId(R.drawable.ic_delete);
         //设置删除图片与父视图的大小比例，默认0.25f
-        mNineGridView.setRatioOfDeleteIcon(0.3f);
+        mNineGridView.setRatioOfDeleteIcon(0.35f);
         //设置“+”号的图片
-        mNineGridView.setIcAddMoreResId(R.drawable.ic_ngv_add_pic);
+        mNineGridView.setIcAddMoreResId(R.drawable.ic_plus);
         //设置各类点击监听
         mNineGridView.setOnItemClickListener(this);
     }
@@ -65,14 +65,14 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
 
     @Override
-    public void onNineGirdAddMoreClick(int cha)
+    public void onNineGirdAddMoreClick(int dValue)
     {
         //编辑模式下，图片展示数量尚未达到最大数量时，会显示一个“+”号，点击后回调这里
         new ImagePicker()
                 .cachePath(Environment.getExternalStorageDirectory().getAbsolutePath())
                 .pickType(ImagePickType.MULTI)
                 .displayer(new ImagePickerLoader())
-                .maxNum(cha)
+                .maxNum(dValue)
                 .start(this, REQUEST_CODE_PICKER);
     }
 

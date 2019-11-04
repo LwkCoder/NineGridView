@@ -3,8 +3,11 @@ ext {
             maven  : 'com.github.dcendents.android-maven',
             bintray: 'com.jfrog.bintray'
     ]
+    //依次执行：
+    //gradlew clean install
+    //gradle2 bintrayUpload
     bintray = [
-            version       : "1.2.5", // 指定库的版本号
+            version       : "1.2.6", // 指定库的版本号
             group         : "com.lwkandroid.widget", // 库的group名，确定好之后不能修改
             libName       : 'NineGridView',// 库的名称
 
