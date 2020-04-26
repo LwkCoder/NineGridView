@@ -25,7 +25,7 @@ import java.util.List;
 public class NineGridView extends ViewGroup
 {
     //Size of imageview while there has only one image
-    private int mSingleImageSize = 100;
+    private int mSingleImageWidth = 0;
     //Aspect ratio of only one imageview
     private float mSingleImageRatio = 1.0f;
     //Size of space
@@ -70,7 +70,7 @@ public class NineGridView extends ViewGroup
     private void initParams(Context context, AttributeSet attrs)
     {
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
-        mSingleImageSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mSingleImageSize, dm);
+        mSingleImageWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mSingleImageWidth, dm);
         mSpaceSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mSpaceSize, dm);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.NineGridView);
@@ -88,7 +88,7 @@ public class NineGridView extends ViewGroup
                     mSingleImageRatio = ta.getFloat(index, mSingleImageRatio);
                 } else if (index == R.styleable.NineGridView_single_image_size)
                 {
-                    mSingleImageSize = ta.getDimensionPixelSize(index, mSingleImageSize);
+                    mSingleImageWidth = ta.getDimensionPixelSize(index, mSingleImageWidth);
                 } else if (index == R.styleable.NineGridView_column_count)
                 {
                     mColumnCount = ta.getInteger(index, mColumnCount);
@@ -118,61 +118,56 @@ public class NineGridView extends ViewGroup
     {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        int resWidth = 0, resHeight = 0;
+        int requiredWidth, requiredHeight;
 
         //Measure width
         int measureWidth = MeasureSpec.getSize(widthMeasureSpec);
         //get available width
         int totalWidth = measureWidth - getPaddingLeft() - getPaddingRight();
 
+        int childCount = getChildCount();
+        int suggestWidth = (totalWidth - (mColumnCount - 1) * mSpaceSize) / mColumnCount;
+
         if (canShowAddMore())
         {
-            //If is in edit mode,each child view must be same size
-            mImageWidth = mImageHeight = (totalWidth - (mColumnCount - 1) * mSpaceSize) / mColumnCount;
-            int childCount = getChildCount();
+            mImageWidth = mImageHeight = suggestWidth;
             if (childCount < mColumnCount)
             {
-                resWidth = mImageWidth * childCount + (childCount - 1) * mSpaceSize + getPaddingLeft() + getPaddingRight();
+                requiredWidth = mImageWidth * childCount + (childCount - 1) * mSpaceSize + getPaddingLeft() + getPaddingRight();
             } else
             {
-                resWidth = mImageWidth * mColumnCount + (mColumnCount - 1) * mSpaceSize + getPaddingLeft() + getPaddingRight();
+                requiredWidth = mImageWidth * mColumnCount + (mColumnCount - 1) * mSpaceSize + getPaddingLeft() + getPaddingRight();
             }
-            resHeight = mImageHeight * mRawCount + (mRawCount - 1) * mSpaceSize + getPaddingTop() + getPaddingBottom();
+            requiredHeight = mImageHeight * mRawCount + (mRawCount - 1) * mSpaceSize + getPaddingTop() + getPaddingBottom();
         } else
         {
-            //If is non-edit mode,the size of childview depends on data size
-            int dataCount = mDataList.size();
-            if (mDataList != null && dataCount > 0)
+            if (getDataList().size() == 1)
             {
-                if (dataCount == 1)
+                if (mSingleImageWidth <= 0)
                 {
-                    mImageWidth = mSingleImageSize > totalWidth ? totalWidth : mSingleImageSize;
-                    mImageHeight = (int) (mImageWidth / mSingleImageRatio);
-                    //Resize single imageview area size,not allowed to exceed the maximum display range
-                    if (mImageHeight > mSingleImageSize)
-                    {
-                        float ratio = mSingleImageSize * 1.0f / mImageHeight;
-                        mImageWidth = (int) (mImageWidth * ratio);
-                        mImageHeight = mSingleImageSize;
-                    }
-                    resWidth = mImageWidth + getPaddingLeft() + getPaddingRight();
-                    resHeight = mImageHeight + getPaddingTop() + getPaddingBottom();
+                    mImageWidth = mImageHeight = suggestWidth;
                 } else
                 {
-                    mImageWidth = mImageHeight = (totalWidth - (mColumnCount - 1) * mSpaceSize) / mColumnCount;
-                    if (dataCount < mColumnCount)
-                    {
-                        resWidth = mImageWidth * dataCount + (dataCount - 1) * mSpaceSize + getPaddingLeft() + getPaddingRight();
-                    } else
-                    {
-                        resWidth = mImageWidth * mColumnCount + (mColumnCount - 1) * mSpaceSize + getPaddingLeft() + getPaddingRight();
-                    }
-                    resHeight = mImageHeight * mRawCount + (mRawCount - 1) * mSpaceSize + getPaddingTop() + getPaddingBottom();
+                    mImageWidth = Math.min(mSingleImageWidth, totalWidth);
+                    mImageHeight = (int) (mImageWidth / mSingleImageRatio);
                 }
+                requiredWidth = mImageWidth + getPaddingLeft() + getPaddingRight();
+                requiredHeight = mImageHeight + getPaddingTop() + getPaddingBottom();
+            } else
+            {
+                mImageWidth = mImageHeight = suggestWidth;
+                if (childCount < mColumnCount)
+                {
+                    requiredWidth = mImageWidth * childCount + (childCount - 1) * mSpaceSize + getPaddingLeft() + getPaddingRight();
+                } else
+                {
+                    requiredWidth = mImageWidth * mColumnCount + (mColumnCount - 1) * mSpaceSize + getPaddingLeft() + getPaddingRight();
+                }
+                requiredHeight = mImageHeight * mRawCount + (mRawCount - 1) * mSpaceSize + getPaddingTop() + getPaddingBottom();
             }
         }
 
-        setMeasuredDimension(resWidth, resHeight);
+        setMeasuredDimension(requiredWidth, requiredHeight);
 
         //Measure child view size
         int childrenCount = getChildCount();
@@ -468,11 +463,21 @@ public class NineGridView extends ViewGroup
     }
 
     /**
-     * Set the size of imageview while there has only one image, dip unit
+     * Set the size of ImageView while there has only one image, dip unit
+     * use setSingleImageWidth(int dpValue)
      */
+    @Deprecated
     public void setSingleImageSize(int dpValue)
     {
-        this.mSingleImageSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue
+        setSingleImageWidth(dpValue);
+    }
+
+    /**
+     * Set the width of ImageView while there has only one image, dip unit
+     */
+    public void setSingleImageWidth(int dpValue)
+    {
+        this.mSingleImageWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue
                 , getContext().getResources().getDisplayMetrics());
     }
 
@@ -583,7 +588,7 @@ public class NineGridView extends ViewGroup
     protected Parcelable onSaveInstanceState()
     {
         SavedViewState ss = new SavedViewState(super.onSaveInstanceState());
-        ss.singleImageSize = mSingleImageSize;
+        ss.singleImageSize = mSingleImageWidth;
         ss.singleImageRatio = mSingleImageRatio;
         ss.spaceSize = mSpaceSize;
         ss.columnCount = mColumnCount;
@@ -608,7 +613,7 @@ public class NineGridView extends ViewGroup
 
         SavedViewState ss = (SavedViewState) state;
         super.onRestoreInstanceState(ss);
-        mSingleImageSize = ss.singleImageSize;
+        mSingleImageWidth = ss.singleImageSize;
         mSingleImageRatio = ss.singleImageRatio;
         mSpaceSize = ss.spaceSize;
         mColumnCount = ss.columnCount;

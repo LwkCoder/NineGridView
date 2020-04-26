@@ -2,7 +2,6 @@ package com.lwk.libsample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Toast;
@@ -40,12 +39,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         mNineGridView.setColumnCount(4);
         //设置是否为编辑模式，默认为false
         mNineGridView.setIsEditMode(checkBox.isChecked());
-        //设置单张图片显示时的尺寸，默认100dp
-        mNineGridView.setSingleImageSize(150);
-        //设置单张图片显示时的宽高比，默认1.0f
+        //设置单张图片显示时的宽度，默认100dp
+        mNineGridView.setSingleImageWidth(150);
+        //设置单张图片显示时的宽高比，默认1.0f,此项设置的前提是必须设置setSingleImageWidth(大于0的数值)
         mNineGridView.setSingleImageRatio(0.8f);
         //设置最大显示数量，默认9张
-        mNineGridView.setMaxNum(16);
+        mNineGridView.setMaxNum(11);
         //设置图片显示间隔大小，默认3dp
         mNineGridView.setSpcaeSize(4);
         //设置删除图片
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     {
         //编辑模式下，图片展示数量尚未达到最大数量时，会显示一个“+”号，点击后回调这里
         new ImagePicker()
-                .cachePath(Environment.getExternalStorageDirectory().getAbsolutePath())
+                .cachePath(getExternalCacheDir().getAbsolutePath())
                 .pickType(ImagePickType.MULTI)
                 .displayer(new ImagePickerLoader())
                 .maxNum(dValue)
