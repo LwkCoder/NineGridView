@@ -27,14 +27,14 @@ dependencies{
 
 ```
 //设置图片加载器，这个是必须的，不然图片无法显示
-mNineGridView.setImageLoader(new GlideImageLoader());'
+mNineGridView.setImageLoader(new GlideImageLoader());
 //设置显示列数，默认3列
 mNineGridView.setColumnCount(4);
 //设置是否为编辑模式，默认为false
 mNineGridView.setIsEditMode(checkBox.isChecked());
-//设置单张图片显示时的尺寸，默认100dp
-mNineGridView.setSingleImageSize(150);
-//设置单张图片显示时的宽高比，默认1.0f
+//设置单张图片显示时的宽度，默认0dp不生效
+mNineGridView.setSingleImageWidth(150);
+//设置单张图片显示时的宽高比，默认1.0f,此项设置的前提是必须设置setSingleImageWidth(大于0的数值)
 mNineGridView.setSingleImageRatio(0.8f);
 //设置最大显示数量，默认9张
 mNineGridView.setMaxNum(16);

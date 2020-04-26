@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         mNineGridView.setColumnCount(4);
         //设置是否为编辑模式，默认为false
         mNineGridView.setIsEditMode(checkBox.isChecked());
-        //设置单张图片显示时的宽度，默认100dp
+        //设置单张图片显示时的宽度，默认0dp不生效
         mNineGridView.setSingleImageWidth(150);
         //设置单张图片显示时的宽高比，默认1.0f,此项设置的前提是必须设置setSingleImageWidth(大于0的数值)
         mNineGridView.setSingleImageRatio(0.8f);
