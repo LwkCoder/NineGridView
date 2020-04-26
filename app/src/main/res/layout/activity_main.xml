@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:id="@+id/activity_main"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lwk.libsample.MainActivity"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context="com.lwk.libsample.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,16 +17,23 @@
             android:id="@+id/ck_main_is_edit_mode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:checked="true"
-            android:text="打开编辑模式"/>
+            android:text="打开编辑模式" />
 
         <com.lwkandroid.widget.ninegridview.NineGridView
             android:id="@+id/ninegridview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
+
+        <Button
+            android:id="@+id/btn_wechat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="朋友圈样式" />
     </LinearLayout>
 
 </ScrollView>

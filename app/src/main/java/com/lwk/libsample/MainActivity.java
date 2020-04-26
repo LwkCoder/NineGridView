@@ -2,6 +2,7 @@ package com.lwk.libsample;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Toast;
@@ -55,6 +56,15 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         mNineGridView.setIcAddMoreResId(R.drawable.ic_plus);
         //设置各类点击监听
         mNineGridView.setOnItemClickListener(this);
+
+        findViewById(R.id.btn_wechat).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(MainActivity.this, WechatActivity.class));
+            }
+        });
     }
 
     @Override
