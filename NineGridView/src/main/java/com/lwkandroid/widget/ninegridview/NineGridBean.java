@@ -29,7 +29,7 @@ public final class NineGridBean implements Parcelable
         this(originUrl, thumbUrl, null);
     }
 
-    public NineGridBean(String thumbUrl, String originUrl, String transitionName)
+    public NineGridBean(String originUrl, String thumbUrl, String transitionName)
     {
         this.thumbUrl = thumbUrl;
         this.originUrl = originUrl;
