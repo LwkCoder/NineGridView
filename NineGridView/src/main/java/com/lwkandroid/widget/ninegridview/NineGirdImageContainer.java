@@ -2,7 +2,6 @@ package com.lwkandroid.widget.ninegridview;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -42,13 +41,10 @@ public class NineGirdImageContainer extends FrameLayout
         mImageView = (NineGridImageView) findViewById(R.id.img_ninegrid_imagecontainer_content);
         mImgDelete = (ImageView) findViewById(R.id.img_ninegrid_imagecontainer_delete);
         mImgDelete.setImageResource(mIcDelete);
-        mImgDelete.setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
+        mImgDelete.setOnClickListener(view -> {
+            if (mListener != null)
             {
-                if (mListener != null)
-                    mListener.onClickDelete();
+                mListener.onClickDelete();
             }
         });
         setIsDeleteMode(mIsDeleteMode);
@@ -101,7 +97,9 @@ public class NineGirdImageContainer extends FrameLayout
     private void setScanType(ImageView.ScaleType scanType)
     {
         if (mImageView != null)
+        {
             mImageView.setScaleType(scanType);
+        }
     }
 
     /**
@@ -111,9 +109,12 @@ public class NineGirdImageContainer extends FrameLayout
     {
         this.mIsDeleteMode = b;
         if (mIsDeleteMode)
+        {
             mImgDelete.setVisibility(VISIBLE);
-        else
+        } else
+        {
             mImgDelete.setVisibility(GONE);
+        }
         requestLayout();
     }
 
@@ -124,7 +125,9 @@ public class NineGirdImageContainer extends FrameLayout
     {
         this.mIcDelete = resId;
         if (mImgDelete != null)
+        {
             mImgDelete.setImageResource(mIcDelete);
+        }
     }
 
     /**

@@ -141,7 +141,12 @@ public class NineGridView extends ViewGroup
             requiredHeight = mImageHeight * mRawCount + (mRawCount - 1) * mSpaceSize + getPaddingTop() + getPaddingBottom();
         } else
         {
-            if (getDataList().size() == 1)
+            if (getDataList().isEmpty())
+            {
+                mImageWidth = mImageHeight = 0;
+                requiredWidth = getPaddingLeft() + getPaddingRight();
+                requiredHeight = getPaddingTop() + getPaddingBottom();
+            } else if (getDataList().size() == 1)
             {
                 if (mSingleImageWidth <= 0)
                 {
@@ -214,7 +219,7 @@ public class NineGridView extends ViewGroup
     {
         mDataList.clear();
         //Not allowed to exceed the maximum number
-        if (dataList != null && dataList.size() > 0)
+        if (dataList != null && !dataList.isEmpty())
         {
             if (dataList.size() <= mMaxNum)
             {
@@ -226,8 +231,7 @@ public class NineGridView extends ViewGroup
         }
         clearAllViews();
         calRawAndColumn();
-        initChildViews();
-        requestLayout();
+        addChildViews(mDataList);
     }
 
     /**
@@ -235,24 +239,22 @@ public class NineGridView extends ViewGroup
      */
     public void addDataList(List<NineGridBean> dataList)
     {
-        if (mDataList.size() >= mMaxNum)
+        if (mDataList.size() >= mMaxNum || dataList == null || dataList.isEmpty())
         {
             return;
         }
-        //Not allowed to exceed the maximum number
         int cha = mMaxNum - mDataList.size();
-        if (dataList.size() <= cha)
+        List<NineGridBean> availableList;
+        if (cha >= dataList.size())
         {
-            mDataList.addAll(dataList);
+            availableList = dataList;
         } else
         {
-            mDataList.addAll(dataList.subList(0, cha - 1));
+            availableList = dataList.subList(0, cha - 1);
         }
-
-        clearAllViews();
+        mDataList.addAll(availableList);
         calRawAndColumn();
-        initChildViews();
-        requestLayout();
+        addChildViews(availableList);
     }
 
     //calculate the count of raw and column
@@ -284,59 +286,47 @@ public class NineGridView extends ViewGroup
         }
     }
 
-    //Initialize child view
-    private void initChildViews()
+    private void addChildViews(List<NineGridBean> dataList)
     {
-        //add image container
-        int dataSize = mDataList.size();
-        for (int i = 0; i < dataSize; i++)
+        if (canShowAddMore())
         {
-            final NineGridBean gridBean = mDataList.get(i);
-            final NineGirdImageContainer imageContainer = new NineGirdImageContainer(getContext());
-            imageContainer.setIsDeleteMode(mIsEditMode);
-            imageContainer.setRatioOfDeleteIcon(mRatioOfDelete);
-            imageContainer.setDeleteIcon(mIcDelete);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            removeAddMoreView();
+        }
+
+        if (dataList != null)
+        {
+            for (int i = 0, dataSize = dataList.size(); i < dataSize; i++)
             {
-                String transitionName = TextUtils.isEmpty(gridBean.getTransitionName()) ?
-                        gridBean.getOriginUrl() : gridBean.getTransitionName();
-                imageContainer.getImageView().setTransitionName(transitionName);
-            }
-            final int position = i;
-            imageContainer.setOnClickDeleteListener(new NineGirdImageContainer.onClickDeleteListener()
-            {
-                @Override
-                public void onClickDelete()
+                final NineGridBean gridBean = dataList.get(i);
+                final NineGirdImageContainer imageContainer = new NineGirdImageContainer(getContext());
+                imageContainer.setIsDeleteMode(mIsEditMode);
+                imageContainer.setRatioOfDeleteIcon(mRatioOfDelete);
+                imageContainer.setDeleteIcon(mIcDelete);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 {
+                    String transitionName = TextUtils.isEmpty(gridBean.getTransitionName()) ?
+                            gridBean.getOriginUrl() : gridBean.getTransitionName();
+                    imageContainer.getImageView().setTransitionName(transitionName);
+                }
+                imageContainer.setOnClickDeleteListener(() -> {
+                    int position = mDataList.indexOf(gridBean);
                     mDataList.remove(position);
-                    clearAllViews();
-                    calRawAndColumn();
-                    initChildViews();
-                    requestLayout();
+                    removeViewAt(position);
+                    setIsEditMode(mIsEditMode);
                     if (mListener != null)
                     {
                         mListener.onNineGirdItemDeleted(position, gridBean, imageContainer);
                     }
-                }
-            });
-            imageContainer.getImageView().setOnClickListener(new OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
+                });
+                imageContainer.getImageView().setOnClickListener(view -> {
                     if (mListener != null)
                     {
-                        mListener.onNineGirdItemClick(position, gridBean, imageContainer);
+                        mListener.onNineGirdItemClick(mDataList.indexOf(gridBean), gridBean, imageContainer);
                     }
-                }
-            });
-            addView(imageContainer, position);
+                });
+                addView(imageContainer);
 
-            imageContainer.post(new Runnable()
-            {
-                @Override
-                public void run()
-                {
+                imageContainer.post(() -> {
                     if (mImageLoader != null)
                     {
                         String url = TextUtils.isEmpty(gridBean.getThumbUrl()) ? gridBean.getOriginUrl() : gridBean.getThumbUrl();
@@ -353,8 +343,8 @@ public class NineGridView extends ViewGroup
                     {
                         Log.w("NineGridView", "Can not display the image of NineGridView, you'd better set a imageloader!!!!");
                     }
-                }
-            });
+                });
+            }
         }
 
         setIsEditMode(mIsEditMode);
@@ -383,36 +373,40 @@ public class NineGridView extends ViewGroup
             {
                 return;
             }
-
-            mImgAddData = new NineGridImageView(getContext());
-            mImgAddData.setImageResource(mIcAddMoreResId);
-            int padddingSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10
-                    , getContext().getResources().getDisplayMetrics());
-            mImgAddData.setPadding(padddingSize, padddingSize, padddingSize, padddingSize);
-            mImgAddData.setScaleType(ImageView.ScaleType.FIT_XY);
-            mImgAddData.setOnClickListener(new OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    if (mListener != null)
-                    {
-                        mListener.onNineGirdAddMoreClick(getDiffValue());
-                    }
-                }
-            });
-            addView(mImgAddData);
+            addInAddMoreView();
         } else
         {
-            if (mImgAddData != null)
-            {
-                removeView(mImgAddData);
-            }
-            mImgAddData = null;
+            removeAddMoreView();
         }
 
         calRawAndColumn();
         requestLayout();
+    }
+
+    private void removeAddMoreView()
+    {
+        if (mImgAddData != null)
+        {
+            removeView(mImgAddData);
+        }
+        mImgAddData = null;
+    }
+
+    private void addInAddMoreView()
+    {
+        mImgAddData = new NineGridImageView(getContext());
+        mImgAddData.setImageResource(mIcAddMoreResId);
+        int paddingSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10
+                , getContext().getResources().getDisplayMetrics());
+        mImgAddData.setPadding(paddingSize, paddingSize, paddingSize, paddingSize);
+        mImgAddData.setScaleType(ImageView.ScaleType.FIT_XY);
+        mImgAddData.setOnClickListener(view -> {
+            if (mListener != null)
+            {
+                mListener.onNineGirdAddMoreClick(getDiffValue());
+            }
+        });
+        addView(mImgAddData);
     }
 
     //Check if is in edit mode
@@ -464,7 +458,7 @@ public class NineGridView extends ViewGroup
 
     /**
      * Set the size of ImageView while there has only one image, dip unit
-     * use setSingleImageWidth(int dpValue)
+     * use {@link #setSingleImageWidth(int dpValue)}
      */
     @Deprecated
     public void setSingleImageSize(int dpValue)
@@ -526,14 +520,6 @@ public class NineGridView extends ViewGroup
     public void setIcDeleteResId(int resId)
     {
         this.mIcDelete = resId;
-        //        for (int i = 0, count = getChildCount(); i < count; i++)
-        //        {
-        //            View child = getChildAt(i);
-        //            if (child instanceof NineGirdImageContainer)
-        //            {
-        //                ((NineGirdImageContainer) child).setDeleteIcon(resId);
-        //            }
-        //        }
     }
 
     /**
@@ -555,7 +541,7 @@ public class NineGridView extends ViewGroup
     public interface onItemClickListener
     {
         /**
-         * Callback when clcik plus button be clicked
+         * Callback when click plus button be clicked
          *
          * @param dValue the diff value between current data number displayed and maximum number
          */
@@ -656,7 +642,13 @@ public class NineGridView extends ViewGroup
             maxNum = source.readInt();
             isEditMode = source.readByte() == (byte) 1;
             icAddMoreResId = source.readInt();
-            dataList = source.readArrayList(NineGridBean.class.getClassLoader());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+            {
+                dataList = source.readParcelableList(dataList, NineGridView.class.getClassLoader());
+            } else
+            {
+                dataList = source.readArrayList(NineGridBean.class.getClassLoader());
+            }
             icDeleteResId = source.readInt();
             ratioDelete = source.readFloat();
         }
@@ -673,7 +665,13 @@ public class NineGridView extends ViewGroup
             out.writeInt(maxNum);
             out.writeByte(isEditMode ? (byte) 1 : (byte) 0);
             out.writeInt(icAddMoreResId);
-            out.writeList(dataList);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+            {
+                out.writeParcelableList(dataList, 0);
+            } else
+            {
+                out.writeList(dataList);
+            }
             out.writeInt(icDeleteResId);
             out.writeFloat(ratioDelete);
         }

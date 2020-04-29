@@ -1,8 +1,10 @@
 # compiler: R8
 # compiler_version: 1.6.82
 # min_api: 14
-# pg_map_id: 22b838c
+# pg_map_id: 20a5f54
 # common_typos_disable
+$r8$backportedMethods$utility$Objects$2$equals -> a:
+    boolean equals(java.lang.Object,java.lang.Object) -> a
 android.support.v4.app.INotificationSideChannel$Stub -> android.support.v4.app.INotificationSideChannel$Stub:
     20:22:void <init>() -> <init>
     40:40:android.os.IBinder asBinder() -> asBinder
@@ -6025,7 +6027,7 @@ androidx.appcompat.widget.ViewUtils -> androidx.appcompat.widget.k0:
     80:97:void makeOptionalFitsSystemWindows(android.view.View) -> b
 androidx.appcompat.widget.WithHint -> androidx.appcompat.widget.l0:
     java.lang.CharSequence getHint() -> a
-androidx.arch.core.executor.ArchTaskExecutor -> a.a.a.a.a:
+androidx.arch.core.executor.ArchTaskExecutor -> b.a.a.a.a:
     androidx.arch.core.executor.ArchTaskExecutor sInstance -> c
     androidx.arch.core.executor.TaskExecutor mDefaultTaskExecutor -> b
     androidx.arch.core.executor.TaskExecutor mDelegate -> a
@@ -6035,13 +6037,13 @@ androidx.arch.core.executor.ArchTaskExecutor -> a.a.a.a.a:
     116:116:boolean isMainThread() -> a
     69:76:androidx.arch.core.executor.ArchTaskExecutor getInstance() -> b
     101:102:void postToMainThread(java.lang.Runnable) -> b
-androidx.arch.core.executor.ArchTaskExecutor$1 -> a.a.a.a.a$a:
+androidx.arch.core.executor.ArchTaskExecutor$1 -> b.a.a.a.a$a:
     42:42:void <init>() -> <init>
     45:46:void execute(java.lang.Runnable) -> execute
-androidx.arch.core.executor.ArchTaskExecutor$2 -> a.a.a.a.a$b:
+androidx.arch.core.executor.ArchTaskExecutor$2 -> b.a.a.a.a$b:
     50:50:void <init>() -> <init>
     53:54:void execute(java.lang.Runnable) -> execute
-androidx.arch.core.executor.DefaultTaskExecutor -> a.a.a.a.b:
+androidx.arch.core.executor.DefaultTaskExecutor -> b.a.a.a.b:
     android.os.Handler mMainHandler -> c
     java.lang.Object mLock -> a
     java.util.concurrent.ExecutorService mDiskIO -> b
@@ -6049,16 +6051,16 @@ androidx.arch.core.executor.DefaultTaskExecutor -> a.a.a.a.b:
     56:57:void executeOnDiskIO(java.lang.Runnable) -> a
     74:74:boolean isMainThread() -> a
     61:70:void postToMainThread(java.lang.Runnable) -> b
-androidx.arch.core.executor.DefaultTaskExecutor$1 -> a.a.a.a.b$a:
+androidx.arch.core.executor.DefaultTaskExecutor$1 -> b.a.a.a.b$a:
     java.util.concurrent.atomic.AtomicInteger mThreadId -> a
     38:41:void <init>(androidx.arch.core.executor.DefaultTaskExecutor) -> <init>
     45:47:java.lang.Thread newThread(java.lang.Runnable) -> newThread
-androidx.arch.core.executor.TaskExecutor -> a.a.a.a.c:
+androidx.arch.core.executor.TaskExecutor -> b.a.a.a.c:
     31:31:void <init>() -> <init>
     void executeOnDiskIO(java.lang.Runnable) -> a
     boolean isMainThread() -> a
     void postToMainThread(java.lang.Runnable) -> b
-androidx.arch.core.internal.FastSafeIterableMap -> a.a.a.b.a:
+androidx.arch.core.internal.FastSafeIterableMap -> b.a.a.b.a:
     java.util.HashMap mHashMap -> f
     35:37:void <init>() -> <init>
     41:41:androidx.arch.core.internal.SafeIterableMap$Entry get(java.lang.Object) -> a
@@ -6066,7 +6068,7 @@ androidx.arch.core.internal.FastSafeIterableMap -> a.a.a.b.a:
     75:78:java.util.Map$Entry ceil(java.lang.Object) -> b
     66:66:boolean contains(java.lang.Object) -> contains
     56:58:java.lang.Object remove(java.lang.Object) -> remove
-androidx.arch.core.internal.SafeIterableMap -> a.a.a.b.b:
+androidx.arch.core.internal.SafeIterableMap -> b.a.a.b.b:
     androidx.arch.core.internal.SafeIterableMap$Entry mStart -> b
     androidx.arch.core.internal.SafeIterableMap$Entry mEnd -> c
     java.util.WeakHashMap mIterators -> d
@@ -6085,15 +6087,15 @@ androidx.arch.core.internal.SafeIterableMap -> a.a.a.b.b:
     98:123:java.lang.Object remove(java.lang.Object) -> remove
     130:130:int size() -> size
     216:226:java.lang.String toString() -> toString
-androidx.arch.core.internal.SafeIterableMap$AscendingIterator -> a.a.a.b.b$a:
+androidx.arch.core.internal.SafeIterableMap$AscendingIterator -> b.a.a.b.b$a:
     283:284:void <init>(androidx.arch.core.internal.SafeIterableMap$Entry,androidx.arch.core.internal.SafeIterableMap$Entry) -> <init>
     293:293:androidx.arch.core.internal.SafeIterableMap$Entry backward(androidx.arch.core.internal.SafeIterableMap$Entry) -> b
     288:288:androidx.arch.core.internal.SafeIterableMap$Entry forward(androidx.arch.core.internal.SafeIterableMap$Entry) -> c
-androidx.arch.core.internal.SafeIterableMap$DescendingIterator -> a.a.a.b.b$b:
+androidx.arch.core.internal.SafeIterableMap$DescendingIterator -> b.a.a.b.b$b:
     300:301:void <init>(androidx.arch.core.internal.SafeIterableMap$Entry,androidx.arch.core.internal.SafeIterableMap$Entry) -> <init>
     310:310:androidx.arch.core.internal.SafeIterableMap$Entry backward(androidx.arch.core.internal.SafeIterableMap$Entry) -> b
     305:305:androidx.arch.core.internal.SafeIterableMap$Entry forward(androidx.arch.core.internal.SafeIterableMap$Entry) -> c
-androidx.arch.core.internal.SafeIterableMap$Entry -> a.a.a.b.b$c:
+androidx.arch.core.internal.SafeIterableMap$Entry -> b.a.a.b.b$c:
     androidx.arch.core.internal.SafeIterableMap$Entry mNext -> d
     androidx.arch.core.internal.SafeIterableMap$Entry mPrevious -> e
     java.lang.Object mKey -> b
@@ -6105,7 +6107,7 @@ androidx.arch.core.internal.SafeIterableMap$Entry -> a.a.a.b.b$c:
     404:404:int hashCode() -> hashCode
     381:381:java.lang.Object setValue(java.lang.Object) -> setValue
     386:386:java.lang.String toString() -> toString
-androidx.arch.core.internal.SafeIterableMap$IteratorWithAdditions -> a.a.a.b.b$d:
+androidx.arch.core.internal.SafeIterableMap$IteratorWithAdditions -> b.a.a.b.b$d:
     androidx.arch.core.internal.SafeIterableMap$Entry mCurrent -> b
     androidx.arch.core.internal.SafeIterableMap this$0 -> d
     boolean mBeforeStart -> c
@@ -6114,7 +6116,7 @@ androidx.arch.core.internal.SafeIterableMap$IteratorWithAdditions -> a.a.a.b.b$d
     332:335:boolean hasNext() -> hasNext
     314:314:java.lang.Object next() -> next
     340:346:java.util.Map$Entry next() -> next
-androidx.arch.core.internal.SafeIterableMap$ListIterator -> a.a.a.b.b$e:
+androidx.arch.core.internal.SafeIterableMap$ListIterator -> b.a.a.b.b$e:
     androidx.arch.core.internal.SafeIterableMap$Entry mExpectedEnd -> b
     androidx.arch.core.internal.SafeIterableMap$Entry mNext -> c
     234:237:void <init>(androidx.arch.core.internal.SafeIterableMap$Entry,androidx.arch.core.internal.SafeIterableMap$Entry) -> <init>
@@ -6125,9 +6127,9 @@ androidx.arch.core.internal.SafeIterableMap$ListIterator -> a.a.a.b.b$e:
     241:241:boolean hasNext() -> hasNext
     229:229:java.lang.Object next() -> next
     271:273:java.util.Map$Entry next() -> next
-androidx.arch.core.internal.SafeIterableMap$SupportRemove -> a.a.a.b.b$f:
+androidx.arch.core.internal.SafeIterableMap$SupportRemove -> b.a.a.b.b$f:
     void supportRemove(androidx.arch.core.internal.SafeIterableMap$Entry) -> a
-androidx.collection.ArrayMap -> a.b.a:
+androidx.collection.ArrayMap -> b.b.a:
     androidx.collection.MapCollections mCollections -> i
     57:58:void <init>() -> <init>
     64:65:void <init>(int) -> <init>
@@ -6137,7 +6139,7 @@ androidx.collection.ArrayMap -> a.b.a:
     194:194:java.util.Set keySet() -> keySet
     142:146:void putAll(java.util.Map) -> putAll
     206:206:java.util.Collection values() -> values
-androidx.collection.ArrayMap$1 -> a.b.a$a:
+androidx.collection.ArrayMap$1 -> b.b.a$a:
     androidx.collection.ArrayMap this$0 -> d
     76:76:void <init>(androidx.collection.ArrayMap) -> <init>
     84:84:java.lang.Object colGetEntry(int,int) -> a
@@ -6149,7 +6151,7 @@ androidx.collection.ArrayMap$1 -> a.b.a$a:
     94:94:int colIndexOfValue(java.lang.Object) -> b
     99:99:java.util.Map colGetMap() -> b
     79:79:int colGetSize() -> c
-androidx.collection.ArraySet -> a.b.b:
+androidx.collection.ArraySet -> b.b.b:
     int[] INT -> f
     androidx.collection.MapCollections mCollections -> e
     java.lang.Object[] mArray -> c
@@ -6188,7 +6190,7 @@ androidx.collection.ArraySet -> a.b.b:
     528:530:java.lang.Object[] toArray() -> toArray
     536:545:java.lang.Object[] toArray(java.lang.Object[]) -> toArray
     607:625:java.lang.String toString() -> toString
-androidx.collection.ArraySet$1 -> a.b.b$a:
+androidx.collection.ArraySet$1 -> b.b.b$a:
     androidx.collection.ArraySet this$0 -> d
     635:635:void <init>(androidx.collection.ArraySet) -> <init>
     643:643:java.lang.Object colGetEntry(int,int) -> a
@@ -6200,7 +6202,7 @@ androidx.collection.ArraySet$1 -> a.b.b$a:
     653:653:int colIndexOfValue(java.lang.Object) -> b
     658:658:java.util.Map colGetMap() -> b
     638:638:int colGetSize() -> c
-androidx.collection.ContainerHelpers -> a.b.c:
+androidx.collection.ContainerHelpers -> b.b.c:
     java.lang.Object[] EMPTY_OBJECTS -> c
     long[] EMPTY_LONGS -> b
     int[] EMPTY_INTS -> a
@@ -6211,7 +6213,7 @@ androidx.collection.ContainerHelpers -> a.b.c:
     65:80:int binarySearch(long[],int,long) -> a
     25:25:int idealIntArraySize(int) -> b
     29:29:int idealLongArraySize(int) -> c
-androidx.collection.LongSparseArray -> a.b.d:
+androidx.collection.LongSparseArray -> b.b.d:
     long[] mKeys -> c
     java.lang.Object[] mValues -> d
     java.lang.Object DELETED -> f
@@ -6235,7 +6237,7 @@ androidx.collection.LongSparseArray -> a.b.d:
     50:50:java.lang.Object clone() -> clone
     88:92:androidx.collection.LongSparseArray clone() -> clone
     494:515:java.lang.String toString() -> toString
-androidx.collection.LruCache -> a.b.e:
+androidx.collection.LruCache -> b.b.e:
     java.util.LinkedHashMap map -> a
     int missCount -> h
     int evictionCount -> f
@@ -6253,7 +6255,7 @@ androidx.collection.LruCache -> a.b.e:
     274:274:int sizeOf(java.lang.Object,java.lang.Object) -> b
     259:261:int safeSizeOf(java.lang.Object,java.lang.Object) -> c
     348:347:java.lang.String toString() -> toString
-androidx.collection.MapCollections -> a.b.f:
+androidx.collection.MapCollections -> b.b.f:
     androidx.collection.MapCollections$KeySet mKeySet -> b
     androidx.collection.MapCollections$ValuesCollection mValues -> c
     androidx.collection.MapCollections$EntrySet mEntrySet -> a
@@ -6276,7 +6278,7 @@ androidx.collection.MapCollections -> a.b.f:
     533:536:java.util.Set getEntrySet() -> d
     540:543:java.util.Set getKeySet() -> e
     547:550:java.util.Collection getValues() -> f
-androidx.collection.MapCollections$ArrayIterator -> a.b.f$a:
+androidx.collection.MapCollections$ArrayIterator -> b.b.f$a:
     androidx.collection.MapCollections this$0 -> f
     boolean mCanRemove -> e
     int mIndex -> d
@@ -6286,7 +6288,7 @@ androidx.collection.MapCollections$ArrayIterator -> a.b.f$a:
     50:50:boolean hasNext() -> hasNext
     55:55:java.lang.Object next() -> next
     64:65:void remove() -> remove
-androidx.collection.MapCollections$EntrySet -> a.b.f$b:
+androidx.collection.MapCollections$EntrySet -> b.b.f$b:
     androidx.collection.MapCollections this$0 -> b
     167:167:void <init>(androidx.collection.MapCollections) -> <init>
     170:170:boolean add(java.util.Map$Entry) -> a
@@ -6305,7 +6307,7 @@ androidx.collection.MapCollections$EntrySet -> a.b.f$b:
     238:238:int size() -> size
     243:243:java.lang.Object[] toArray() -> toArray
     248:248:java.lang.Object[] toArray(java.lang.Object[]) -> toArray
-androidx.collection.MapCollections$KeySet -> a.b.f$c:
+androidx.collection.MapCollections$KeySet -> b.b.f$c:
     androidx.collection.MapCollections this$0 -> b
     269:269:void <init>(androidx.collection.MapCollections) -> <init>
     273:273:boolean add(java.lang.Object) -> add
@@ -6323,7 +6325,7 @@ androidx.collection.MapCollections$KeySet -> a.b.f$c:
     328:328:int size() -> size
     333:333:java.lang.Object[] toArray() -> toArray
     338:338:java.lang.Object[] toArray(java.lang.Object[]) -> toArray
-androidx.collection.MapCollections$MapIterator -> a.b.f$d:
+androidx.collection.MapCollections$MapIterator -> b.b.f$d:
     androidx.collection.MapCollections this$0 -> e
     int mEnd -> b
     int mIndex -> c
@@ -6339,7 +6341,7 @@ androidx.collection.MapCollections$MapIterator -> a.b.f$d:
     99:100:void remove() -> remove
     128:129:java.lang.Object setValue(java.lang.Object) -> setValue
     163:163:java.lang.String toString() -> toString
-androidx.collection.MapCollections$ValuesCollection -> a.b.f$e:
+androidx.collection.MapCollections$ValuesCollection -> b.b.f$e:
     androidx.collection.MapCollections this$0 -> b
     357:357:void <init>(androidx.collection.MapCollections) -> <init>
     361:361:boolean add(java.lang.Object) -> add
@@ -6355,7 +6357,7 @@ androidx.collection.MapCollections$ValuesCollection -> a.b.f$e:
     444:444:int size() -> size
     449:449:java.lang.Object[] toArray() -> toArray
     454:454:java.lang.Object[] toArray(java.lang.Object[]) -> toArray
-androidx.collection.SimpleArrayMap -> a.b.g:
+androidx.collection.SimpleArrayMap -> b.b.g:
     java.lang.Object[] mBaseCache -> e
     java.lang.Object[] mArray -> c
     int[] mHashes -> b
@@ -6394,7 +6396,7 @@ androidx.collection.SimpleArrayMap -> a.b.g:
     653:661:boolean replace(java.lang.Object,java.lang.Object,java.lang.Object) -> replace
     668:668:int size() -> size
     762:787:java.lang.String toString() -> toString
-androidx.collection.SparseArrayCompat -> a.b.h:
+androidx.collection.SparseArrayCompat -> b.b.h:
     java.lang.Object[] mValues -> d
     java.lang.Object DELETED -> f
     int[] mKeys -> c
@@ -9499,7 +9501,7 @@ androidx.drawerlayout.widget.DrawerLayout$ViewDragCallback$1 -> androidx.drawerl
     androidx.drawerlayout.widget.DrawerLayout$ViewDragCallback this$1 -> b
     2146:2146:void <init>(androidx.drawerlayout.widget.DrawerLayout$ViewDragCallback) -> <init>
     2148:2149:void run() -> run
-androidx.exifinterface.media.ExifInterface -> a.c.a.a:
+androidx.exifinterface.media.ExifInterface -> b.c.a.a:
     byte[] JPEG_SIGNATURE -> o
     int mRw2JpgFromRawOffset -> l
     byte[] ORF_MAKER_NOTE_HEADER_2 -> q
@@ -9570,7 +9572,7 @@ androidx.exifinterface.media.ExifInterface -> a.c.a.a:
     5805:5867:void updateImageSizeValues(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream,int) -> d
     5285:5291:java.nio.ByteOrder readByteOrder(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream) -> e
     5578:5602:void setThumbnailData(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream) -> f
-androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream -> a.c.a.a$a:
+androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream -> b.c.a.a$a:
     java.io.DataInputStream mDataInputStream -> b
     java.nio.ByteOrder BIG_ENDIAN -> g
     int mLength -> d
@@ -9602,7 +9604,7 @@ androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream -> a.c.a.a
     6190:6191:int readUnsignedByte() -> readUnsignedByte
     6306:6308:int readUnsignedShort() -> readUnsignedShort
     6295:6301:int skipBytes(int) -> skipBytes
-androidx.exifinterface.media.ExifInterface$ExifAttribute -> a.c.a.a$b:
+androidx.exifinterface.media.ExifInterface$ExifAttribute -> b.c.a.a$b:
     int numberOfComponents -> b
     byte[] bytes -> c
     int format -> a
@@ -9619,7 +9621,7 @@ androidx.exifinterface.media.ExifInterface$ExifAttribute -> a.c.a.a$b:
     3243:3294:java.lang.String getStringValue(java.nio.ByteOrder) -> c
     3057:3173:java.lang.Object getValue(java.nio.ByteOrder) -> d
     3052:3052:java.lang.String toString() -> toString
-androidx.exifinterface.media.ExifInterface$ExifTag -> a.c.a.a$c:
+androidx.exifinterface.media.ExifInterface$ExifTag -> b.c.a.a$c:
     int secondaryFormat -> d
     java.lang.String name -> b
     int primaryFormat -> c
@@ -9627,7 +9629,7 @@ androidx.exifinterface.media.ExifInterface$ExifTag -> a.c.a.a$c:
     3310:3315:void <init>(java.lang.String,int,int) -> <init>
     3318:3323:void <init>(java.lang.String,int,int,int) -> <init>
     3327:3328:boolean isFormatCompatible(int) -> a
-androidx.exifinterface.media.ExifInterface$Rational -> a.c.a.a$d:
+androidx.exifinterface.media.ExifInterface$Rational -> b.c.a.a$d:
     long denominator -> b
     long numerator -> a
     2915:2924:void <init>(long,long) -> <init>
@@ -10643,22 +10645,22 @@ androidx.fragment.app.FragmentViewLifecycleOwner -> androidx.fragment.app.m:
     40:40:boolean isInitialized() -> e
 androidx.fragment.app.SuperNotCalledException -> androidx.fragment.app.SuperNotCalledException:
     23:24:void <init>(java.lang.String) -> <init>
-androidx.interpolator.view.animation.FastOutLinearInInterpolator -> a.d.a.a.a:
+androidx.interpolator.view.animation.FastOutLinearInInterpolator -> b.d.a.a.a:
     float[] VALUES -> c
     34:34:void <clinit>() -> <clinit>
     67:68:void <init>() -> <init>
     28:28:float getInterpolation(float) -> getInterpolation
-androidx.interpolator.view.animation.FastOutSlowInInterpolator -> a.d.a.a.b:
+androidx.interpolator.view.animation.FastOutSlowInInterpolator -> b.d.a.a.b:
     float[] VALUES -> c
     34:34:void <clinit>() -> <clinit>
     67:68:void <init>() -> <init>
     28:28:float getInterpolation(float) -> getInterpolation
-androidx.interpolator.view.animation.LinearOutSlowInInterpolator -> a.d.a.a.c:
+androidx.interpolator.view.animation.LinearOutSlowInInterpolator -> b.d.a.a.c:
     float[] VALUES -> c
     34:34:void <clinit>() -> <clinit>
     67:68:void <init>() -> <init>
     28:28:float getInterpolation(float) -> getInterpolation
-androidx.interpolator.view.animation.LookupTableInterpolator -> a.d.a.a.d:
+androidx.interpolator.view.animation.LookupTableInterpolator -> b.d.a.a.d:
     float mStepSize -> b
     float[] mValues -> a
     30:33:void <init>(float[]) -> <init>
@@ -19209,50 +19211,67 @@ com.lwkandroid.rcvadapter.utils.RcvLinearDecoration -> com.lwkandroid.rcvadapter
     192:211:void drawVertical(android.graphics.Canvas,androidx.recyclerview.widget.RecyclerView) -> d
 com.lwkandroid.rcvadapter.utils.RcvUtils -> com.lwkandroid.rcvadapter.i.b:
     21:21:void doErrorLog(java.lang.String,java.lang.String) -> a
-com.lwkandroid.widget.ninegridview.INineGridImageLoader -> com.lwkandroid.widget.ninegridview.a:
+com.lwkandroid.widget.ninegridview.-$$Lambda$NineGirdImageContainer$jGsLuNCKtqssuCndGu0e0qVd3MM -> com.lwkandroid.widget.ninegridview.a:
+    com.lwkandroid.widget.ninegridview.NineGirdImageContainer f$0 -> b
+com.lwkandroid.widget.ninegridview.-$$Lambda$NineGridView$-E08l4dxAeT0uc5cSCvbrDnIjK8 -> com.lwkandroid.widget.ninegridview.b:
+    com.lwkandroid.widget.ninegridview.NineGridView f$0 -> a
+    com.lwkandroid.widget.ninegridview.NineGirdImageContainer f$2 -> c
+    com.lwkandroid.widget.ninegridview.NineGridBean f$1 -> b
+    void onClickDelete() -> a
+com.lwkandroid.widget.ninegridview.-$$Lambda$NineGridView$PaRT7cf7273n1nTN5f22oMp_aFY -> com.lwkandroid.widget.ninegridview.c:
+    com.lwkandroid.widget.ninegridview.NineGridView f$0 -> b
+    com.lwkandroid.widget.ninegridview.NineGridBean f$1 -> c
+    com.lwkandroid.widget.ninegridview.NineGirdImageContainer f$2 -> d
+com.lwkandroid.widget.ninegridview.-$$Lambda$NineGridView$__yK_04nqFoXjHKUo_IYIr0-kSU -> com.lwkandroid.widget.ninegridview.d:
+    com.lwkandroid.widget.ninegridview.NineGridView f$0 -> b
+com.lwkandroid.widget.ninegridview.-$$Lambda$NineGridView$jXdcgC-iCgYnZzT8Gt7JMJy-row -> com.lwkandroid.widget.ninegridview.e:
+    com.lwkandroid.widget.ninegridview.NineGridView f$0 -> b
+    com.lwkandroid.widget.ninegridview.NineGridBean f$1 -> c
+    com.lwkandroid.widget.ninegridview.NineGirdImageContainer f$2 -> d
+com.lwkandroid.widget.ninegridview.INineGridImageLoader -> com.lwkandroid.widget.ninegridview.f:
     void displayNineGridImage(android.content.Context,java.lang.String,android.widget.ImageView) -> a
     void displayNineGridImage(android.content.Context,java.lang.String,android.widget.ImageView,int,int) -> a
 com.lwkandroid.widget.ninegridview.NineGirdImageContainer -> com.lwkandroid.widget.ninegridview.NineGirdImageContainer:
-    28:30:void <init>(android.content.Context) -> <init>
-    34:36:void <init>(android.content.Context,android.util.AttributeSet) -> <init>
-    15:15:com.lwkandroid.widget.ninegridview.NineGirdImageContainer$onClickDeleteListener access$000(com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> access$000
-    95:95:int getImageHeight() -> getImageHeight
-    153:153:android.widget.ImageView getImageView() -> getImageView
-    90:90:int getImageWidth() -> getImageWidth
-    40:55:void init(android.content.Context,android.util.AttributeSet) -> init
-    135:135:boolean isDeleteMode() -> isDeleteMode
-    60:86:void onMeasure(int,int) -> onMeasure
-    125:128:void setDeleteIcon(int) -> setDeleteIcon
-    112:118:void setIsDeleteMode(boolean) -> setIsDeleteMode
-    163:164:void setOnClickDeleteListener(com.lwkandroid.widget.ninegridview.NineGirdImageContainer$onClickDeleteListener) -> setOnClickDeleteListener
-    145:146:void setRatioOfDeleteIcon(float) -> setRatioOfDeleteIcon
-    103:105:void setScanType(android.widget.ImageView$ScaleType) -> setScanType
-com.lwkandroid.widget.ninegridview.NineGirdImageContainer$1 -> com.lwkandroid.widget.ninegridview.NineGirdImageContainer$a:
-    com.lwkandroid.widget.ninegridview.NineGirdImageContainer this$0 -> b
-    46:46:void <init>(com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> <init>
-    50:52:void onClick(android.view.View) -> onClick
-com.lwkandroid.widget.ninegridview.NineGirdImageContainer$onClickDeleteListener -> com.lwkandroid.widget.ninegridview.NineGirdImageContainer$b:
+    27:29:void <init>(android.content.Context) -> <init>
+    33:35:void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    45:49:void lambda$init$0(android.view.View) -> a
+    91:91:int getImageHeight() -> getImageHeight
+    156:156:android.widget.ImageView getImageView() -> getImageView
+    86:86:int getImageWidth() -> getImageWidth
+    39:51:void init(android.content.Context,android.util.AttributeSet) -> init
+    138:138:boolean isDeleteMode() -> isDeleteMode
+    56:82:void onMeasure(int,int) -> onMeasure
+    126:131:void setDeleteIcon(int) -> setDeleteIcon
+    110:119:void setIsDeleteMode(boolean) -> setIsDeleteMode
+    166:167:void setOnClickDeleteListener(com.lwkandroid.widget.ninegridview.NineGirdImageContainer$onClickDeleteListener) -> setOnClickDeleteListener
+    148:149:void setRatioOfDeleteIcon(float) -> setRatioOfDeleteIcon
+    99:103:void setScanType(android.widget.ImageView$ScaleType) -> setScanType
+com.lwkandroid.widget.ninegridview.NineGirdImageContainer$onClickDeleteListener -> com.lwkandroid.widget.ninegridview.NineGirdImageContainer$a:
     void onClickDelete() -> a
 com.lwkandroid.widget.ninegridview.NineGridBean -> com.lwkandroid.widget.ninegridview.NineGridBean:
-    java.lang.String originUrl -> c
-    java.lang.String thumbUrl -> b
-    java.lang.String transitionName -> d
-    95:95:void <clinit>() -> <clinit>
-    17:19:void <init>(java.lang.String) -> <init>
-    22:25:void <init>(java.lang.String,java.lang.String) -> <init>
-    89:93:void <init>(android.os.Parcel) -> <init>
-    46:46:java.lang.String getOriginUrl() -> a
-    36:36:java.lang.String getThumbUrl() -> b
-    56:56:java.lang.String getTransitionName() -> c
-    77:77:int describeContents() -> describeContents
-    67:67:java.lang.String toString() -> toString
-    83:86:void writeToParcel(android.os.Parcel,int) -> writeToParcel
+    java.lang.String thumbUrl -> c
+    java.lang.String id -> b
+    java.lang.String transitionName -> e
+    java.lang.String originUrl -> d
+    142:142:void <clinit>() -> <clinit>
+    24:25:void <init>(java.lang.String) -> <init>
+    29:30:void <init>(java.lang.String,java.lang.String) -> <init>
+    33:38:void <init>(java.lang.String,java.lang.String,java.lang.String) -> <init>
+    135:140:void <init>(android.os.Parcel) -> <init>
+    52:52:java.lang.String getOriginUrl() -> a
+    42:42:java.lang.String getThumbUrl() -> b
+    62:62:java.lang.String getTransitionName() -> c
+    122:122:int describeContents() -> describeContents
+    89:95:boolean equals(java.lang.Object) -> equals
+    110:115:int hashCode() -> hashCode
+    78:78:java.lang.String toString() -> toString
+    128:132:void writeToParcel(android.os.Parcel,int) -> writeToParcel
 com.lwkandroid.widget.ninegridview.NineGridBean$1 -> com.lwkandroid.widget.ninegridview.NineGridBean$a:
-    96:96:void <init>() -> <init>
-    96:96:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-    100:100:com.lwkandroid.widget.ninegridview.NineGridBean createFromParcel(android.os.Parcel) -> createFromParcel
-    96:96:java.lang.Object[] newArray(int) -> newArray
-    106:106:com.lwkandroid.widget.ninegridview.NineGridBean[] newArray(int) -> newArray
+    143:143:void <init>() -> <init>
+    143:143:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+    147:147:com.lwkandroid.widget.ninegridview.NineGridBean createFromParcel(android.os.Parcel) -> createFromParcel
+    143:143:java.lang.Object[] newArray(int) -> newArray
+    153:153:com.lwkandroid.widget.ninegridview.NineGridBean[] newArray(int) -> newArray
 com.lwkandroid.widget.ninegridview.NineGridImageView -> com.lwkandroid.widget.ninegridview.NineGridImageView:
     15:17:void <init>(android.content.Context) -> <init>
     21:23:void <init>(android.content.Context,android.util.AttributeSet) -> <init>
@@ -19260,62 +19279,39 @@ com.lwkandroid.widget.ninegridview.NineGridImageView -> com.lwkandroid.widget.ni
 com.lwkandroid.widget.ninegridview.NineGridView -> com.lwkandroid.widget.ninegridview.NineGridView:
     60:62:void <init>(android.content.Context) -> <init>
     66:68:void <init>(android.content.Context,android.util.AttributeSet) -> <init>
-    25:25:java.util.List access$000(com.lwkandroid.widget.ninegridview.NineGridView) -> access$000
-    25:25:void access$100(com.lwkandroid.widget.ninegridview.NineGridView) -> access$100
-    25:25:void access$200(com.lwkandroid.widget.ninegridview.NineGridView) -> access$200
-    25:25:void access$300(com.lwkandroid.widget.ninegridview.NineGridView) -> access$300
-    25:25:com.lwkandroid.widget.ninegridview.NineGridView$onItemClickListener access$400(com.lwkandroid.widget.ninegridview.NineGridView) -> access$400
-    25:25:com.lwkandroid.widget.ninegridview.INineGridImageLoader access$500(com.lwkandroid.widget.ninegridview.NineGridView) -> access$500
-    238:256:void addDataList(java.util.List) -> addDataList
-    261:285:void calRawAndColumn() -> calRawAndColumn
-    421:421:boolean canShowAddMore() -> canShowAddMore
-    495:501:void clearAllViews() -> clearAllViews
-    508:508:java.util.List getDataList() -> getDataList
-    544:544:int getDiffValue() -> getDiffValue
-    291:361:void initChildViews() -> initChildViews
+    312:320:void lambda$addChildViews$0(com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> a
+    322:326:void lambda$addChildViews$1(com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer,android.view.View) -> a
+    404:408:void lambda$addInAddMoreView$3(android.view.View) -> a
+    291:351:void addChildViews(java.util.List) -> addChildViews
+    242:244:void addDataList(java.util.List) -> addDataList
+    397:410:void addInAddMoreView() -> addInAddMoreView
+    330:346:void lambda$addChildViews$2(com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> b
+    263:287:void calRawAndColumn() -> calRawAndColumn
+    415:415:boolean canShowAddMore() -> canShowAddMore
+    489:495:void clearAllViews() -> clearAllViews
+    502:502:java.util.List getDataList() -> getDataList
+    530:530:int getDiffValue() -> getDiffValue
     72:114:void initParams(android.content.Context,android.util.AttributeSet) -> initParams
-    206:208:void onFinishInflate() -> onFinishInflate
-    189:201:void onLayout(boolean,int,int,int,int) -> onLayout
-    119:184:void onMeasure(int,int) -> onMeasure
-    608:627:void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
-    590:602:android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
-    437:438:void setColumnCount(int) -> setColumnCount
-    215:231:void setDataList(java.util.List) -> setDataList
-    516:521:void setIcAddMoreResId(int) -> setIcAddMoreResId
-    528:537:void setIcDeleteResId(int) -> setIcDeleteResId
-    429:430:void setImageLoader(com.lwkandroid.widget.ninegridview.INineGridImageLoader) -> setImageLoader
-    368:416:void setIsEditMode(boolean) -> setIsEditMode
-    453:454:void setMaxNum(int) -> setMaxNum
-    552:553:void setOnItemClickListener(com.lwkandroid.widget.ninegridview.NineGridView$onItemClickListener) -> setOnItemClickListener
-    445:446:void setRatioOfDeleteIcon(float) -> setRatioOfDeleteIcon
-    489:490:void setSingleImageRatio(float) -> setSingleImageRatio
-    472:473:void setSingleImageSize(int) -> setSingleImageSize
-    480:482:void setSingleImageWidth(int) -> setSingleImageWidth
-    461:463:void setSpcaeSize(int) -> setSpcaeSize
+    211:213:void onFinishInflate() -> onFinishInflate
+    194:206:void onLayout(boolean,int,int,int,int) -> onLayout
+    119:189:void onMeasure(int,int) -> onMeasure
+    594:613:void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
+    576:588:android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
+    388:393:void removeAddMoreView() -> removeAddMoreView
+    431:432:void setColumnCount(int) -> setColumnCount
+    220:235:void setDataList(java.util.List) -> setDataList
+    510:515:void setIcAddMoreResId(int) -> setIcAddMoreResId
+    522:523:void setIcDeleteResId(int) -> setIcDeleteResId
+    423:424:void setImageLoader(com.lwkandroid.widget.ninegridview.INineGridImageLoader) -> setImageLoader
+    358:384:void setIsEditMode(boolean) -> setIsEditMode
+    447:448:void setMaxNum(int) -> setMaxNum
+    538:539:void setOnItemClickListener(com.lwkandroid.widget.ninegridview.NineGridView$onItemClickListener) -> setOnItemClickListener
+    439:440:void setRatioOfDeleteIcon(float) -> setRatioOfDeleteIcon
+    483:484:void setSingleImageRatio(float) -> setSingleImageRatio
+    466:467:void setSingleImageSize(int) -> setSingleImageSize
+    474:476:void setSingleImageWidth(int) -> setSingleImageWidth
+    455:457:void setSpcaeSize(int) -> setSpcaeSize
 com.lwkandroid.widget.ninegridview.NineGridView$1 -> com.lwkandroid.widget.ninegridview.NineGridView$a:
-    com.lwkandroid.widget.ninegridview.NineGirdImageContainer val$imageContainer -> c
-    com.lwkandroid.widget.ninegridview.NineGridBean val$gridBean -> b
-    int val$position -> a
-    com.lwkandroid.widget.ninegridview.NineGridView this$0 -> d
-    307:307:void <init>(com.lwkandroid.widget.ninegridview.NineGridView,int,com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> <init>
-    311:320:void onClickDelete() -> a
-com.lwkandroid.widget.ninegridview.NineGridView$2 -> com.lwkandroid.widget.ninegridview.NineGridView$b:
-    com.lwkandroid.widget.ninegridview.NineGridBean val$gridBean -> c
-    com.lwkandroid.widget.ninegridview.NineGirdImageContainer val$imageContainer -> d
-    int val$position -> b
-    com.lwkandroid.widget.ninegridview.NineGridView this$0 -> e
-    323:323:void <init>(com.lwkandroid.widget.ninegridview.NineGridView,int,com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> <init>
-    327:331:void onClick(android.view.View) -> onClick
-com.lwkandroid.widget.ninegridview.NineGridView$3 -> com.lwkandroid.widget.ninegridview.NineGridView$c:
-    com.lwkandroid.widget.ninegridview.NineGirdImageContainer val$imageContainer -> c
-    com.lwkandroid.widget.ninegridview.NineGridBean val$gridBean -> b
-    com.lwkandroid.widget.ninegridview.NineGridView this$0 -> d
-    336:336:void <init>(com.lwkandroid.widget.ninegridview.NineGridView,com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> <init>
-    340:356:void run() -> run
-com.lwkandroid.widget.ninegridview.NineGridView$4 -> com.lwkandroid.widget.ninegridview.NineGridView$d:
-    com.lwkandroid.widget.ninegridview.NineGridView this$0 -> b
-    394:394:void <init>(com.lwkandroid.widget.ninegridview.NineGridView) -> <init>
-    398:402:void onClick(android.view.View) -> onClick
 com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState -> com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState:
     float ratioDelete -> l
     int icDeleteResId -> k
@@ -19328,18 +19324,18 @@ com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState -> com.lwkandroid
     int columnCount -> e
     boolean isEditMode -> h
     int singleImageSize -> b
-    681:681:void <clinit>() -> <clinit>
-    629:629:void <init>(android.os.Parcel,com.lwkandroid.widget.ninegridview.NineGridView$1) -> <init>
-    645:646:void <init>(android.os.Parcelable) -> <init>
-    650:662:void <init>(android.os.Parcel) -> <init>
-    667:679:void writeToParcel(android.os.Parcel,int) -> writeToParcel
+    679:679:void <clinit>() -> <clinit>
+    615:615:void <init>(android.os.Parcel,com.lwkandroid.widget.ninegridview.NineGridView$1) -> <init>
+    631:632:void <init>(android.os.Parcelable) -> <init>
+    636:654:void <init>(android.os.Parcel) -> <init>
+    659:677:void writeToParcel(android.os.Parcel,int) -> writeToParcel
 com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState$1 -> com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState$a:
-    682:682:void <init>() -> <init>
-    682:682:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-    686:686:com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState createFromParcel(android.os.Parcel) -> createFromParcel
-    682:682:java.lang.Object[] newArray(int) -> newArray
-    692:692:com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState[] newArray(int) -> newArray
-com.lwkandroid.widget.ninegridview.NineGridView$onItemClickListener -> com.lwkandroid.widget.ninegridview.NineGridView$e:
+    680:680:void <init>() -> <init>
+    680:680:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+    684:684:com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState createFromParcel(android.os.Parcel) -> createFromParcel
+    680:680:java.lang.Object[] newArray(int) -> newArray
+    690:690:com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState[] newArray(int) -> newArray
+com.lwkandroid.widget.ninegridview.NineGridView$onItemClickListener -> com.lwkandroid.widget.ninegridview.NineGridView$b:
     void onNineGirdAddMoreClick(int) -> a
     void onNineGirdItemClick(int,com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> a
     void onNineGirdItemDeleted(int,com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> b
