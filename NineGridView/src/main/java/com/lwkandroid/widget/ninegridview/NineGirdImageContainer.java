@@ -8,10 +8,11 @@ import android.widget.ImageView;
 import com.lwk.ninegridview.R;
 
 /**
- * ImageContainer
+ * 图片自定义控件
+ *
+ * @author LWK
  */
-
-public class NineGirdImageContainer extends FrameLayout
+public final class NineGirdImageContainer extends FrameLayout
 {
     private int mWidth = 0, mHeight = 0;
     private NineGridImageView mImageView;
@@ -58,12 +59,12 @@ public class NineGirdImageContainer extends FrameLayout
         mHeight = MeasureSpec.getSize(heightMeasureSpec);
         setMeasuredDimension(mWidth, mHeight);
 
-        //Measure the size of the delete button
+        //设置删除图片的尺寸
         int delSize = (int) (mWidth * mRatio);
         int delMode = MeasureSpec.EXACTLY;
         int delSpec = MeasureSpec.makeMeasureSpec(delSize, delMode);
         mImgDelete.measure(delSpec, delSpec);
-        //Measure the size of imageView
+        //根据模式设置显示图片的尺寸
         mImageWidth = 0;
         mImageHeight = 0;
         int imgMode = MeasureSpec.EXACTLY, imgWidthSpec = 0, imgHeightSpec = 0;
@@ -92,9 +93,9 @@ public class NineGirdImageContainer extends FrameLayout
     }
 
     /**
-     * Set scantype of imageView
+     * 设置显示图片的ScaleType
      */
-    private void setScanType(ImageView.ScaleType scanType)
+    private void setScaleType(ImageView.ScaleType scanType)
     {
         if (mImageView != null)
         {
@@ -103,7 +104,7 @@ public class NineGirdImageContainer extends FrameLayout
     }
 
     /**
-     * Set if is in the delete mode
+     * 设置是否为删除模式
      */
     public void setIsDeleteMode(boolean b)
     {
@@ -119,7 +120,7 @@ public class NineGirdImageContainer extends FrameLayout
     }
 
     /**
-     * Set the resource id of the delete
+     * 设置删除图片的资源id
      */
     public void setDeleteIcon(int resId)
     {
@@ -131,7 +132,7 @@ public class NineGirdImageContainer extends FrameLayout
     }
 
     /**
-     * If is in the delete mode
+     * 当前是否为删除模式
      */
     public boolean isDeleteMode()
     {
@@ -139,7 +140,7 @@ public class NineGirdImageContainer extends FrameLayout
     }
 
     /**
-     * Set the ratio for the size of delete icon with the Parent View
+     * 设置删除图片的尺寸占父容器比例
      *
      * @param ratio
      */
@@ -149,7 +150,7 @@ public class NineGirdImageContainer extends FrameLayout
     }
 
     /**
-     * Get imageView object
+     * 获取实际显示图片的ImageView
      */
     public ImageView getImageView()
     {

@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         //设置最大显示数量，默认9张
         mNineGridView.setMaxNum(11);
         //设置图片显示间隔大小，默认3dp
-        mNineGridView.setSpcaeSize(4);
+        mNineGridView.setSpaceSize(4);
         //设置删除图片
         mNineGridView.setIcDeleteResId(R.drawable.ic_delete);
         //设置删除图片与父视图的大小比例，默认0.25f

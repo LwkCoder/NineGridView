@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 /**
- * Data source
+ * 数据实体类
  *
  * @author LWK
  */

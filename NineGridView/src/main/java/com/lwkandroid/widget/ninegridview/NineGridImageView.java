@@ -6,9 +6,11 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 
 /**
- * ImageView which has click effect
+ * 改变透明度实现点击事件反馈的ImageView
+ *
+ * @author LWK
  */
-public class NineGridImageView extends ImageView
+public final class NineGridImageView extends ImageView
 {
     public NineGridImageView(Context context)
     {

@@ -66,7 +66,7 @@ public class WechatActivity extends AppCompatActivity
             //设置最大显示数量，默认9张
             nine_grid_view.setMaxNum(9);
             //设置图片显示间隔大小，默认3dp
-            nine_grid_view.setSpcaeSize(5);
+            nine_grid_view.setSpaceSize(5);
             nine_grid_view.setDataList(createData());
             nine_grid_view.setOnItemClickListener(new NineGridView.onItemClickListener()
             {

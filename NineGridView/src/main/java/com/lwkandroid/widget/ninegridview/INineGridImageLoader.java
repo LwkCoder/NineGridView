@@ -4,9 +4,10 @@ import android.content.Context;
 import android.widget.ImageView;
 
 /**
- *The interface of imageloader
+ * 图片加载器接口
+ *
+ * @author LWK
  */
-
 public interface INineGridImageLoader
 {
     void displayNineGridImage(Context context, String url, ImageView imageView);

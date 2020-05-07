@@ -20,39 +20,71 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Squared imageview displayer
+ * 九宫格控件
+ *
+ * @author LWK
  */
 public class NineGridView extends ViewGroup
 {
-    //Size of imageview while there has only one image
+    /**
+     * 只有单张图片时，ImageView的宽度
+     */
     private int mSingleImageWidth = 0;
-    //Aspect ratio of only one imageview
+    /**
+     * 只有单张图片时，ImageView的宽高比
+     */
     private float mSingleImageRatio = 1.0f;
-    //Size of space
+    /**
+     * 间距大小
+     */
     private int mSpaceSize = 3;
-    //Width and height of every imageview(more than one image)
+    /**
+     * 多张图片时，每个ImageView的宽高
+     */
     private int mImageWidth, mImageHeight;
-    //column count
+    /**
+     * 列数
+     */
     private int mColumnCount = 3;
-    //raw count,depends on column count
+    /**
+     * 行数
+     */
     private int mRawCount;
-    //interface of imageloader
+    /**
+     * 图片加载器接口
+     */
     private INineGridImageLoader mImageLoader;
-    //image datas
+    /**
+     * 图片数据
+     */
     private List<NineGridBean> mDataList = new ArrayList<>();
-    //plus button
+    /**
+     * “+”号图片
+     */
     private NineGridImageView mImgAddData;
-    //child view click listener
+    /**
+     * 子控件点击监听
+     */
     private onItemClickListener mListener;
-    //weather is in edit mode
+    /**
+     * 当前是否为编辑模式
+     */
     private boolean mIsEditMode;
-    //Maximum of image
+    /**
+     * 最大显示图片数量
+     */
     private int mMaxNum = 9;
-    //Resource Id of AddMore
+    /**
+     * “+”号图片资源id
+     */
     private int mIcAddMoreResId = R.drawable.ic_ngv_add_pic;
-    //Resource Id of the delete icon
+    /**
+     * 删除图片的资源id
+     */
     private int mIcDelete = R.drawable.ic_ngv_delete;
-    //Ratio of delete icon with parent view
+    /**
+     * 删除图片的尺寸比例
+     */
     private float mRatioOfDelete = 0.25f;
 
     public NineGridView(Context context)
@@ -118,18 +150,19 @@ public class NineGridView extends ViewGroup
     {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
+        //最终整个控件的所需宽高
         int requiredWidth, requiredHeight;
-
-        //Measure width
+        //获取当前可用最大宽度
         int measureWidth = MeasureSpec.getSize(widthMeasureSpec);
-        //get available width
         int totalWidth = measureWidth - getPaddingLeft() - getPaddingRight();
 
+        //多张图片时，每个子控件的建议尺寸
         int childCount = getChildCount();
         int suggestWidth = (totalWidth - (mColumnCount - 1) * mSpaceSize) / mColumnCount;
 
         if (canShowAddMore())
         {
+            //编辑模式下，每个子控件的尺寸=建议尺寸
             mImageWidth = mImageHeight = suggestWidth;
             if (childCount < mColumnCount)
             {
@@ -141,13 +174,18 @@ public class NineGridView extends ViewGroup
             requiredHeight = mImageHeight * mRawCount + (mRawCount - 1) * mSpaceSize + getPaddingTop() + getPaddingBottom();
         } else
         {
+            //非编辑模式下，每个控件的尺寸需要根据实际情况决定
+
             if (getDataList().isEmpty())
             {
+                //没有数据的时候，每个子控件尺寸=0
                 mImageWidth = mImageHeight = 0;
                 requiredWidth = getPaddingLeft() + getPaddingRight();
                 requiredHeight = getPaddingTop() + getPaddingBottom();
             } else if (getDataList().size() == 1)
             {
+                //只有一张图片时
+                //没有额外设置单张图片尺寸时使用建议尺寸，否则需要取最小值
                 if (mSingleImageWidth <= 0)
                 {
                     mImageWidth = mImageHeight = suggestWidth;
@@ -160,6 +198,7 @@ public class NineGridView extends ViewGroup
                 requiredHeight = mImageHeight + getPaddingTop() + getPaddingBottom();
             } else
             {
+                //多张图片时，每个子控件的尺寸=建议尺寸
                 mImageWidth = mImageHeight = suggestWidth;
                 if (childCount < mColumnCount)
                 {
@@ -172,9 +211,10 @@ public class NineGridView extends ViewGroup
             }
         }
 
+        //设置最终该控件宽高
         setMeasuredDimension(requiredWidth, requiredHeight);
 
-        //Measure child view size
+        //设置每个子控件宽高
         int childrenCount = getChildCount();
         for (int index = 0; index < childrenCount; index++)
         {
@@ -213,12 +253,12 @@ public class NineGridView extends ViewGroup
     }
 
     /**
-     * Set data source
+     * 设置数据集合
      */
     public void setDataList(List<NineGridBean> dataList)
     {
         mDataList.clear();
-        //Not allowed to exceed the maximum number
+        //不允许超过最大值
         if (dataList != null && !dataList.isEmpty())
         {
             if (dataList.size() <= mMaxNum)
@@ -230,12 +270,11 @@ public class NineGridView extends ViewGroup
             }
         }
         clearAllViews();
-        calRawAndColumn();
         addChildViews(mDataList);
     }
 
     /**
-     * Add data source
+     * 添加数据集合
      */
     public void addDataList(List<NineGridBean> dataList)
     {
@@ -253,39 +292,243 @@ public class NineGridView extends ViewGroup
             availableList = dataList.subList(0, cha - 1);
         }
         mDataList.addAll(availableList);
-        calRawAndColumn();
         addChildViews(availableList);
     }
 
-    //calculate the count of raw and column
-    private void calRawAndColumn()
+    /**
+     * 设置是否为编辑模式
+     */
+    public void setIsEditMode(boolean b)
     {
-        int childSize = mDataList.size();
-        //Increase the data size to display plus button in edit mode
-        if (canShowAddMore())
+        mIsEditMode = b;
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++)
         {
-            childSize++;
+            View childView = getChildAt(i);
+            if (childView instanceof NineGirdImageContainer)
+            {
+                ((NineGirdImageContainer) childView).setIsDeleteMode(b);
+            }
         }
 
+        if (canShowAddMore())
+        {
+            if (mImgAddData != null)
+            {
+                return;
+            }
+            addInAddMoreView();
+        } else
+        {
+            removeAddMoreView();
+        }
+
+        calRawAndColumn();
+        requestLayout();
+    }
+
+    /**
+     * 设置图片加载器实现类
+     */
+    public void setImageLoader(INineGridImageLoader loader)
+    {
+        this.mImageLoader = loader;
+    }
+
+    /**
+     * 设置列数
+     */
+    public void setColumnCount(int columnCount)
+    {
+        this.mColumnCount = columnCount;
+    }
+
+    /**
+     * 设置删除图片尺寸在父容器内的比例
+     */
+    public void setRatioOfDeleteIcon(float ratio)
+    {
+        this.mRatioOfDelete = ratio;
+    }
+
+    /**
+     * 获取当前数据集合
+     */
+    public List<NineGridBean> getDataList()
+    {
+        return mDataList;
+    }
+
+    /**
+     * 设置“+”号图片的资源id
+     */
+    public void setIcAddMoreResId(int resId)
+    {
+        this.mIcAddMoreResId = resId;
+        if (mImgAddData != null)
+        {
+            mImgAddData.setImageResource(resId);
+        }
+    }
+
+    /**
+     * 设置删除图片的资源id
+     */
+    public void setIcDeleteResId(int resId)
+    {
+        this.mIcDelete = resId;
+    }
+
+    /**
+     * 获取最大允许显示数量与当前显示数量的差值
+     */
+    public int getDiffValue()
+    {
+        return mMaxNum - mDataList.size();
+    }
+
+    /**
+     * 设置子控件点击监听
+     */
+    public void setOnItemClickListener(onItemClickListener l)
+    {
+        this.mListener = l;
+    }
+
+    /**
+     * 最社最大显示数量
+     */
+    public void setMaxNum(int maxNum)
+    {
+        this.mMaxNum = maxNum;
+    }
+
+    /**
+     * 设置间距尺寸，单位dp
+     */
+    public void setSpaceSize(int dpValue)
+    {
+        this.mSpaceSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue
+                , getContext().getResources().getDisplayMetrics());
+    }
+
+    /**
+     * 【已废弃】
+     * 设置只有单张图片时的显示尺寸，单位dp
+     * use {@link #setSingleImageWidth(int dpValue)}
+     */
+    @Deprecated
+    public void setSingleImageSize(int dpValue)
+    {
+        setSingleImageWidth(dpValue);
+    }
+
+    /**
+     * 设置只有单张图片时的显示宽度，单位dp
+     */
+    public void setSingleImageWidth(int dpValue)
+    {
+        this.mSingleImageWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue
+                , getContext().getResources().getDisplayMetrics());
+    }
+
+    /**
+     * 设置只有单张图片时的显示宽高比，单位dp
+     */
+    public void setSingleImageRatio(float ratio)
+    {
+        this.mSingleImageRatio = ratio;
+    }
+
+    /**
+     * 子控件点击监听
+     */
+    public interface onItemClickListener
+    {
+
+        /**
+         * Callback when click plus button be clicked
+         *
+         * @param dValue the diff value between current data number displayed and maximum number
+         */
+        void onNineGirdAddMoreClick(int dValue);
+
+        /**
+         * Callback when image be clicked
+         *
+         * @param position       position,started with 0
+         * @param gridBean       data of image be clicked
+         * @param imageContainer image container of image be clicked
+         */
+        void onNineGirdItemClick(int position, NineGridBean gridBean, NineGirdImageContainer imageContainer);
+
+        /**
+         * Callback when one image be deleted
+         *
+         * @param position       position,started with 0
+         * @param gridBean       data of image be clicked
+         * @param imageContainer image container of image be clicked
+         */
+        void onNineGirdItemDeleted(int position, NineGridBean gridBean, NineGirdImageContainer imageContainer);
+    }
+
+    /**
+     * 移除“+”号
+     */
+    private void removeAddMoreView()
+    {
+        if (mImgAddData != null)
+        {
+            removeView(mImgAddData);
+        }
+        mImgAddData = null;
+    }
+
+    /**
+     * 添加“+”号
+     */
+    private void addInAddMoreView()
+    {
+        mImgAddData = new NineGridImageView(getContext());
+        mImgAddData.setImageResource(mIcAddMoreResId);
+        int paddingSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10
+                , getContext().getResources().getDisplayMetrics());
+        mImgAddData.setPadding(paddingSize, paddingSize, paddingSize, paddingSize);
+        mImgAddData.setScaleType(ImageView.ScaleType.FIT_XY);
+        mImgAddData.setOnClickListener(view -> {
+            if (mListener != null)
+            {
+                mListener.onNineGirdAddMoreClick(getDiffValue());
+            }
+        });
+        addView(mImgAddData);
+    }
+
+    /**
+     * 计算行数和列数
+     */
+    private void calRawAndColumn()
+    {
+        int childCount = getChildCount();
+
         //calculate the raw count
-        if (childSize == 0)
+        if (childCount == 0)
         {
             mRawCount = 0;
-        } else if (childSize <= mColumnCount)
+        } else if (childCount <= mColumnCount)
         {
             mRawCount = 1;
         } else
         {
-            if (childSize % mColumnCount == 0)
-            {
-                mRawCount = childSize / mColumnCount;
-            } else
-            {
-                mRawCount = childSize / mColumnCount + 1;
-            }
+            mRawCount = childCount % mColumnCount == 0 ? childCount / mColumnCount : childCount / mColumnCount + 1;
         }
     }
 
+    /**
+     * 根据数据集合添加子控件
+     *
+     * @param dataList 待显示的数据集合
+     */
     private void addChildViews(List<NineGridBean> dataList)
     {
         if (canShowAddMore())
@@ -308,11 +551,13 @@ public class NineGridView extends ViewGroup
                             gridBean.getOriginUrl() : gridBean.getTransitionName();
                     imageContainer.getImageView().setTransitionName(transitionName);
                 }
+
                 imageContainer.setOnClickDeleteListener(() -> {
                     int position = mDataList.indexOf(gridBean);
                     mDataList.remove(position);
                     removeViewAt(position);
-                    setIsEditMode(mIsEditMode);
+                    calRawAndColumn();
+                    requestLayout();
                     if (mListener != null)
                     {
                         mListener.onNineGirdItemDeleted(position, gridBean, imageContainer);
@@ -351,219 +596,20 @@ public class NineGridView extends ViewGroup
     }
 
     /**
-     * Set weather is in edit mode
+     * 判断当前是否能显示“+”号
      */
-    public void setIsEditMode(boolean b)
-    {
-        mIsEditMode = b;
-        int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++)
-        {
-            View childView = getChildAt(i);
-            if (childView instanceof NineGirdImageContainer)
-            {
-                ((NineGirdImageContainer) childView).setIsDeleteMode(b);
-            }
-        }
-
-        //Add plus button in edit mode
-        if (canShowAddMore())
-        {
-            if (mImgAddData != null)
-            {
-                return;
-            }
-            addInAddMoreView();
-        } else
-        {
-            removeAddMoreView();
-        }
-
-        calRawAndColumn();
-        requestLayout();
-    }
-
-    private void removeAddMoreView()
-    {
-        if (mImgAddData != null)
-        {
-            removeView(mImgAddData);
-        }
-        mImgAddData = null;
-    }
-
-    private void addInAddMoreView()
-    {
-        mImgAddData = new NineGridImageView(getContext());
-        mImgAddData.setImageResource(mIcAddMoreResId);
-        int paddingSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10
-                , getContext().getResources().getDisplayMetrics());
-        mImgAddData.setPadding(paddingSize, paddingSize, paddingSize, paddingSize);
-        mImgAddData.setScaleType(ImageView.ScaleType.FIT_XY);
-        mImgAddData.setOnClickListener(view -> {
-            if (mListener != null)
-            {
-                mListener.onNineGirdAddMoreClick(getDiffValue());
-            }
-        });
-        addView(mImgAddData);
-    }
-
-    //Check if is in edit mode
     private boolean canShowAddMore()
     {
         return mIsEditMode && mDataList.size() < mMaxNum;
     }
 
     /**
-     * Set up imageloader
+     * 清除所有子控件
      */
-    public void setImageLoader(INineGridImageLoader loader)
-    {
-        this.mImageLoader = loader;
-    }
-
-    /**
-     * Set column count
-     */
-    public void setColumnCount(int columnCount)
-    {
-        this.mColumnCount = columnCount;
-    }
-
-    /**
-     * Set the ratio for the size of delete icon with the Parent View
-     */
-    public void setRatioOfDeleteIcon(float ratio)
-    {
-        this.mRatioOfDelete = ratio;
-    }
-
-    /**
-     * Set the maximum number
-     */
-    public void setMaxNum(int maxNum)
-    {
-        this.mMaxNum = maxNum;
-    }
-
-    /**
-     * Set the space size, dip unit
-     */
-    public void setSpcaeSize(int dpValue)
-    {
-        this.mSpaceSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue
-                , getContext().getResources().getDisplayMetrics());
-    }
-
-    /**
-     * Set the size of ImageView while there has only one image, dip unit
-     * use {@link #setSingleImageWidth(int dpValue)}
-     */
-    @Deprecated
-    public void setSingleImageSize(int dpValue)
-    {
-        setSingleImageWidth(dpValue);
-    }
-
-    /**
-     * Set the width of ImageView while there has only one image, dip unit
-     */
-    public void setSingleImageWidth(int dpValue)
-    {
-        this.mSingleImageWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue
-                , getContext().getResources().getDisplayMetrics());
-    }
-
-    /**
-     * Set the aspect ratio of only one imageview
-     */
-    public void setSingleImageRatio(float ratio)
-    {
-        this.mSingleImageRatio = ratio;
-    }
-
-    //clear all views
     private void clearAllViews()
     {
         removeAllViews();
-        if (mImgAddData != null)
-        {
-            removeView(mImgAddData);
-        }
         mImgAddData = null;
-    }
-
-    /**
-     * Get data source
-     */
-    public List<NineGridBean> getDataList()
-    {
-        return mDataList;
-    }
-
-    /**
-     * Set resource id of icon for AddMore
-     */
-    public void setIcAddMoreResId(int resId)
-    {
-        this.mIcAddMoreResId = resId;
-        if (mImgAddData != null)
-        {
-            mImgAddData.setImageResource(resId);
-        }
-    }
-
-    /**
-     * Set resource id of the icon of delete
-     */
-    public void setIcDeleteResId(int resId)
-    {
-        this.mIcDelete = resId;
-    }
-
-    /**
-     * Return the diff value between current data number displayed and maximum number
-     */
-    public int getDiffValue()
-    {
-        return mMaxNum - mDataList.size();
-    }
-
-    /**
-     * Set up child view click listener
-     */
-    public void setOnItemClickListener(onItemClickListener l)
-    {
-        this.mListener = l;
-    }
-
-    public interface onItemClickListener
-    {
-        /**
-         * Callback when click plus button be clicked
-         *
-         * @param dValue the diff value between current data number displayed and maximum number
-         */
-        void onNineGirdAddMoreClick(int dValue);
-
-        /**
-         * Callback when image be clicked
-         *
-         * @param position       position,started with 0
-         * @param gridBean       data of image be clicked
-         * @param imageContainer image container of image be clicked
-         */
-        void onNineGirdItemClick(int position, NineGridBean gridBean, NineGirdImageContainer imageContainer);
-
-        /**
-         * Callback when one image be deleted
-         *
-         * @param position       position,started with 0
-         * @param gridBean       data of image be clicked
-         * @param imageContainer image container of image be clicked
-         */
-        void onNineGirdItemDeleted(int position, NineGridBean gridBean, NineGirdImageContainer imageContainer);
     }
 
     /*****************************************************

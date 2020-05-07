@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.6.82
 # min_api: 14
-# pg_map_id: 20a5f54
+# pg_map_id: c8d6f95
 # common_typos_disable
 $r8$backportedMethods$utility$Objects$2$equals -> a:
     boolean equals(java.lang.Object,java.lang.Object) -> a
@@ -19213,18 +19213,18 @@ com.lwkandroid.rcvadapter.utils.RcvUtils -> com.lwkandroid.rcvadapter.i.b:
     21:21:void doErrorLog(java.lang.String,java.lang.String) -> a
 com.lwkandroid.widget.ninegridview.-$$Lambda$NineGirdImageContainer$jGsLuNCKtqssuCndGu0e0qVd3MM -> com.lwkandroid.widget.ninegridview.a:
     com.lwkandroid.widget.ninegridview.NineGirdImageContainer f$0 -> b
-com.lwkandroid.widget.ninegridview.-$$Lambda$NineGridView$-E08l4dxAeT0uc5cSCvbrDnIjK8 -> com.lwkandroid.widget.ninegridview.b:
+com.lwkandroid.widget.ninegridview.-$$Lambda$NineGridView$Ea2bZssKC2ODZ25iYp8BhuPiw5E -> com.lwkandroid.widget.ninegridview.b:
+    com.lwkandroid.widget.ninegridview.NineGridView f$0 -> b
+    com.lwkandroid.widget.ninegridview.NineGridBean f$1 -> c
+    com.lwkandroid.widget.ninegridview.NineGirdImageContainer f$2 -> d
+com.lwkandroid.widget.ninegridview.-$$Lambda$NineGridView$XUHrLtcU7FqsuigppShq1S0xN20 -> com.lwkandroid.widget.ninegridview.c:
     com.lwkandroid.widget.ninegridview.NineGridView f$0 -> a
     com.lwkandroid.widget.ninegridview.NineGirdImageContainer f$2 -> c
     com.lwkandroid.widget.ninegridview.NineGridBean f$1 -> b
     void onClickDelete() -> a
-com.lwkandroid.widget.ninegridview.-$$Lambda$NineGridView$PaRT7cf7273n1nTN5f22oMp_aFY -> com.lwkandroid.widget.ninegridview.c:
+com.lwkandroid.widget.ninegridview.-$$Lambda$NineGridView$bICepU6rww1q5QZHySghySWfvOo -> com.lwkandroid.widget.ninegridview.d:
     com.lwkandroid.widget.ninegridview.NineGridView f$0 -> b
-    com.lwkandroid.widget.ninegridview.NineGridBean f$1 -> c
-    com.lwkandroid.widget.ninegridview.NineGirdImageContainer f$2 -> d
-com.lwkandroid.widget.ninegridview.-$$Lambda$NineGridView$__yK_04nqFoXjHKUo_IYIr0-kSU -> com.lwkandroid.widget.ninegridview.d:
-    com.lwkandroid.widget.ninegridview.NineGridView f$0 -> b
-com.lwkandroid.widget.ninegridview.-$$Lambda$NineGridView$jXdcgC-iCgYnZzT8Gt7JMJy-row -> com.lwkandroid.widget.ninegridview.e:
+com.lwkandroid.widget.ninegridview.-$$Lambda$NineGridView$oPn87ISFRC9VqbxWGa2D5PKCDZU -> com.lwkandroid.widget.ninegridview.e:
     com.lwkandroid.widget.ninegridview.NineGridView f$0 -> b
     com.lwkandroid.widget.ninegridview.NineGridBean f$1 -> c
     com.lwkandroid.widget.ninegridview.NineGirdImageContainer f$2 -> d
@@ -19232,20 +19232,20 @@ com.lwkandroid.widget.ninegridview.INineGridImageLoader -> com.lwkandroid.widget
     void displayNineGridImage(android.content.Context,java.lang.String,android.widget.ImageView) -> a
     void displayNineGridImage(android.content.Context,java.lang.String,android.widget.ImageView,int,int) -> a
 com.lwkandroid.widget.ninegridview.NineGirdImageContainer -> com.lwkandroid.widget.ninegridview.NineGirdImageContainer:
-    27:29:void <init>(android.content.Context) -> <init>
-    33:35:void <init>(android.content.Context,android.util.AttributeSet) -> <init>
-    45:49:void lambda$init$0(android.view.View) -> a
-    91:91:int getImageHeight() -> getImageHeight
-    156:156:android.widget.ImageView getImageView() -> getImageView
-    86:86:int getImageWidth() -> getImageWidth
-    39:51:void init(android.content.Context,android.util.AttributeSet) -> init
-    138:138:boolean isDeleteMode() -> isDeleteMode
-    56:82:void onMeasure(int,int) -> onMeasure
-    126:131:void setDeleteIcon(int) -> setDeleteIcon
-    110:119:void setIsDeleteMode(boolean) -> setIsDeleteMode
-    166:167:void setOnClickDeleteListener(com.lwkandroid.widget.ninegridview.NineGirdImageContainer$onClickDeleteListener) -> setOnClickDeleteListener
-    148:149:void setRatioOfDeleteIcon(float) -> setRatioOfDeleteIcon
-    99:103:void setScanType(android.widget.ImageView$ScaleType) -> setScanType
+    28:30:void <init>(android.content.Context) -> <init>
+    34:36:void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    46:50:void lambda$init$0(android.view.View) -> a
+    92:92:int getImageHeight() -> getImageHeight
+    157:157:android.widget.ImageView getImageView() -> getImageView
+    87:87:int getImageWidth() -> getImageWidth
+    40:52:void init(android.content.Context,android.util.AttributeSet) -> init
+    139:139:boolean isDeleteMode() -> isDeleteMode
+    57:83:void onMeasure(int,int) -> onMeasure
+    127:132:void setDeleteIcon(int) -> setDeleteIcon
+    111:120:void setIsDeleteMode(boolean) -> setIsDeleteMode
+    167:168:void setOnClickDeleteListener(com.lwkandroid.widget.ninegridview.NineGirdImageContainer$onClickDeleteListener) -> setOnClickDeleteListener
+    149:150:void setRatioOfDeleteIcon(float) -> setRatioOfDeleteIcon
+    100:104:void setScaleType(android.widget.ImageView$ScaleType) -> setScaleType
 com.lwkandroid.widget.ninegridview.NineGirdImageContainer$onClickDeleteListener -> com.lwkandroid.widget.ninegridview.NineGirdImageContainer$a:
     void onClickDelete() -> a
 com.lwkandroid.widget.ninegridview.NineGridBean -> com.lwkandroid.widget.ninegridview.NineGridBean:
@@ -19273,44 +19273,44 @@ com.lwkandroid.widget.ninegridview.NineGridBean$1 -> com.lwkandroid.widget.nineg
     143:143:java.lang.Object[] newArray(int) -> newArray
     153:153:com.lwkandroid.widget.ninegridview.NineGridBean[] newArray(int) -> newArray
 com.lwkandroid.widget.ninegridview.NineGridImageView -> com.lwkandroid.widget.ninegridview.NineGridImageView:
-    15:17:void <init>(android.content.Context) -> <init>
-    21:23:void <init>(android.content.Context,android.util.AttributeSet) -> <init>
-    28:40:boolean dispatchTouchEvent(android.view.MotionEvent) -> dispatchTouchEvent
+    17:19:void <init>(android.content.Context) -> <init>
+    23:25:void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    30:42:boolean dispatchTouchEvent(android.view.MotionEvent) -> dispatchTouchEvent
 com.lwkandroid.widget.ninegridview.NineGridView -> com.lwkandroid.widget.ninegridview.NineGridView:
-    60:62:void <init>(android.content.Context) -> <init>
-    66:68:void <init>(android.content.Context,android.util.AttributeSet) -> <init>
-    312:320:void lambda$addChildViews$0(com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> a
-    322:326:void lambda$addChildViews$1(com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer,android.view.View) -> a
-    404:408:void lambda$addInAddMoreView$3(android.view.View) -> a
-    291:351:void addChildViews(java.util.List) -> addChildViews
-    242:244:void addDataList(java.util.List) -> addDataList
-    397:410:void addInAddMoreView() -> addInAddMoreView
-    330:346:void lambda$addChildViews$2(com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> b
-    263:287:void calRawAndColumn() -> calRawAndColumn
-    415:415:boolean canShowAddMore() -> canShowAddMore
-    489:495:void clearAllViews() -> clearAllViews
-    502:502:java.util.List getDataList() -> getDataList
-    530:530:int getDiffValue() -> getDiffValue
-    72:114:void initParams(android.content.Context,android.util.AttributeSet) -> initParams
-    211:213:void onFinishInflate() -> onFinishInflate
-    194:206:void onLayout(boolean,int,int,int,int) -> onLayout
-    119:189:void onMeasure(int,int) -> onMeasure
-    594:613:void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
-    576:588:android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
-    388:393:void removeAddMoreView() -> removeAddMoreView
-    431:432:void setColumnCount(int) -> setColumnCount
-    220:235:void setDataList(java.util.List) -> setDataList
-    510:515:void setIcAddMoreResId(int) -> setIcAddMoreResId
-    522:523:void setIcDeleteResId(int) -> setIcDeleteResId
-    423:424:void setImageLoader(com.lwkandroid.widget.ninegridview.INineGridImageLoader) -> setImageLoader
-    358:384:void setIsEditMode(boolean) -> setIsEditMode
-    447:448:void setMaxNum(int) -> setMaxNum
-    538:539:void setOnItemClickListener(com.lwkandroid.widget.ninegridview.NineGridView$onItemClickListener) -> setOnItemClickListener
-    439:440:void setRatioOfDeleteIcon(float) -> setRatioOfDeleteIcon
-    483:484:void setSingleImageRatio(float) -> setSingleImageRatio
-    466:467:void setSingleImageSize(int) -> setSingleImageSize
-    474:476:void setSingleImageWidth(int) -> setSingleImageWidth
-    455:457:void setSpcaeSize(int) -> setSpcaeSize
+    92:94:void <init>(android.content.Context) -> <init>
+    98:100:void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    499:503:void lambda$addInAddMoreView$0(android.view.View) -> a
+    556:565:void lambda$addChildViews$1(com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> a
+    567:571:void lambda$addChildViews$2(com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer,android.view.View) -> a
+    534:596:void addChildViews(java.util.List) -> addChildViews
+    281:283:void addDataList(java.util.List) -> addDataList
+    492:505:void addInAddMoreView() -> addInAddMoreView
+    575:591:void lambda$addChildViews$3(com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> b
+    512:525:void calRawAndColumn() -> calRawAndColumn
+    603:603:boolean canShowAddMore() -> canShowAddMore
+    611:613:void clearAllViews() -> clearAllViews
+    359:359:java.util.List getDataList() -> getDataList
+    387:387:int getDiffValue() -> getDiffValue
+    104:146:void initParams(android.content.Context,android.util.AttributeSet) -> initParams
+    251:253:void onFinishInflate() -> onFinishInflate
+    234:246:void onLayout(boolean,int,int,int,int) -> onLayout
+    151:229:void onMeasure(int,int) -> onMeasure
+    640:659:void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
+    622:634:android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
+    480:485:void removeAddMoreView() -> removeAddMoreView
+    343:344:void setColumnCount(int) -> setColumnCount
+    260:274:void setDataList(java.util.List) -> setDataList
+    367:372:void setIcAddMoreResId(int) -> setIcAddMoreResId
+    379:380:void setIcDeleteResId(int) -> setIcDeleteResId
+    335:336:void setImageLoader(com.lwkandroid.widget.ninegridview.INineGridImageLoader) -> setImageLoader
+    303:328:void setIsEditMode(boolean) -> setIsEditMode
+    403:404:void setMaxNum(int) -> setMaxNum
+    395:396:void setOnItemClickListener(com.lwkandroid.widget.ninegridview.NineGridView$onItemClickListener) -> setOnItemClickListener
+    351:352:void setRatioOfDeleteIcon(float) -> setRatioOfDeleteIcon
+    440:441:void setSingleImageRatio(float) -> setSingleImageRatio
+    423:424:void setSingleImageSize(int) -> setSingleImageSize
+    431:433:void setSingleImageWidth(int) -> setSingleImageWidth
+    411:413:void setSpaceSize(int) -> setSpaceSize
 com.lwkandroid.widget.ninegridview.NineGridView$1 -> com.lwkandroid.widget.ninegridview.NineGridView$a:
 com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState -> com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState:
     float ratioDelete -> l
@@ -19324,17 +19324,17 @@ com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState -> com.lwkandroid
     int columnCount -> e
     boolean isEditMode -> h
     int singleImageSize -> b
-    679:679:void <clinit>() -> <clinit>
-    615:615:void <init>(android.os.Parcel,com.lwkandroid.widget.ninegridview.NineGridView$1) -> <init>
-    631:632:void <init>(android.os.Parcelable) -> <init>
-    636:654:void <init>(android.os.Parcel) -> <init>
-    659:677:void writeToParcel(android.os.Parcel,int) -> writeToParcel
+    725:725:void <clinit>() -> <clinit>
+    661:661:void <init>(android.os.Parcel,com.lwkandroid.widget.ninegridview.NineGridView$1) -> <init>
+    677:678:void <init>(android.os.Parcelable) -> <init>
+    682:700:void <init>(android.os.Parcel) -> <init>
+    705:723:void writeToParcel(android.os.Parcel,int) -> writeToParcel
 com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState$1 -> com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState$a:
-    680:680:void <init>() -> <init>
-    680:680:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-    684:684:com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState createFromParcel(android.os.Parcel) -> createFromParcel
-    680:680:java.lang.Object[] newArray(int) -> newArray
-    690:690:com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState[] newArray(int) -> newArray
+    726:726:void <init>() -> <init>
+    726:726:java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+    730:730:com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState createFromParcel(android.os.Parcel) -> createFromParcel
+    726:726:java.lang.Object[] newArray(int) -> newArray
+    736:736:com.lwkandroid.widget.ninegridview.NineGridView$SavedViewState[] newArray(int) -> newArray
 com.lwkandroid.widget.ninegridview.NineGridView$onItemClickListener -> com.lwkandroid.widget.ninegridview.NineGridView$b:
     void onNineGirdAddMoreClick(int) -> a
     void onNineGirdItemClick(int,com.lwkandroid.widget.ninegridview.NineGridBean,com.lwkandroid.widget.ninegridview.NineGirdImageContainer) -> a
