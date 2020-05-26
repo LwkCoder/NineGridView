@@ -556,8 +556,7 @@ public class NineGridView extends ViewGroup
                     int position = mDataList.indexOf(gridBean);
                     mDataList.remove(position);
                     removeViewAt(position);
-                    calRawAndColumn();
-                    requestLayout();
+                    setIsEditMode(mIsEditMode);
                     if (mListener != null)
                     {
                         mListener.onNineGirdItemDeleted(position, gridBean, imageContainer);
