@@ -1,6 +1,6 @@
 #RTPermission
--dontwarn com.lwk.ninegridview.**
--keep class com.lwk.ninegridview.**{*;}
+-dontwarn com.lwkandroid.widget.ninegridview.**
+-keep class com.lwkandroid.widget.ninegridview.**{*;}
 
 #---------------------------------基本指令区-------------------------------
 #代码混淆的压缩比例，值在0-7之间

@@ -5,7 +5,6 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.lwk.ninegridview.R;
 
 /**
  * 图片自定义控件
