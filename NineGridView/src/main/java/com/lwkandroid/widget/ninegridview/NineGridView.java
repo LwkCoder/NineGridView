@@ -311,11 +311,10 @@ public class NineGridView extends ViewGroup
 
         if (canShowAddMore())
         {
-            if (mImgAddData != null)
+            if (mImgAddData == null)
             {
-                return;
+                addInAddMoreView();
             }
-            addInAddMoreView();
         } else
         {
             removeAddMoreView();
