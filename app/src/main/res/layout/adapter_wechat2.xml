@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,6 +9,8 @@
         android:id="@+id/img_profile"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -17,27 +19,26 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/img_profile"
         android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/img_profile"
         android:text="NAME"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toRightOf="@+id/img_profile"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="16sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
         android:text="2020-01-01 00:00:00"
-        android:textSize="16sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="16sp" />
 
     <com.lwkandroid.widget.ninegridview.NineGridView
         android:id="@+id/ngv_images"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/img_profile"
         android:layout_marginTop="8dp"
-        app:enable_edit_mode="false"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_profile" />
+        app:enable_edit_mode="false" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

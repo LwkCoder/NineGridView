@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NineGridView">
+        <attr name="divider_line_size" format="dimension" />
+        <attr name="single_image_width" format="dimension" />
+        <attr name="single_image_height" format="dimension" />
+        <attr name="icon_plus_drawable" format="reference" />
+        <attr name="icon_delete_drawable" format="reference" />
+        <attr name="icon_delete_size_ratio" format="float" />
+        <attr name="enable_edit_mode" format="boolean" />
+        <attr name="horizontal_child_count" format="integer" />
+        <attr name="android:scaleType" />
+    </declare-styleable>
+
+</resources>

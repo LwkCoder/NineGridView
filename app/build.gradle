@@ -35,11 +35,12 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation "com.github.bumptech.glide:glide:${LIB_GLIDE_VERSION}"
-    implementation "com.lwkandroid:ImagePicker:${LIB_IMAGEPICKER_VERSION}"
-    implementation "com.lwkandroid:recyclerviewadapter:1.4.3"
-    implementation project(':NineGridView')
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "androidx.appcompat:appcompat:$AppCompatXVersion"
+    implementation "androidx.legacy:legacy-support-v4:$Supportv4Version"
+    implementation "com.github.bumptech.glide:glide:$GlideVersion"
+    implementation "com.lwkandroid:ImagePicker:$ImagePickerVersion"
+    implementation "com.lwkandroid.library:rcvadapter:$RcvAdapterVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$ConstraintLayoutVersion"
+    implementation "androidx.recyclerview:recyclerview:$RecyclerViewVersion"
+    implementation project(':library')
 }

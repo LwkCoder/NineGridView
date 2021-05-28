@@ -1,0 +1,16 @@
+ext {
+    configs = [
+            libVersion    : "1.4.4", // 指定库的版本号
+            libGroupId    : "com.lwkandroid.library", // 库的group名，确定好之后不能修改
+            libArtifactId : "NineGridView",//库的ArtifactId
+            libName       : 'NineGridView',// 库的名称
+            libDescription: 'Library for android', // 项目描述，随意
+
+            githubPageUrl : 'https://github.com/Vanish136/NineGridView', // 项目开源地址
+            gitHttpUrl    : 'scm:git:github.com/Vanish136/NineGridView.git', // 项目git地址
+
+            developerId   : 'Vanish', // 开发者id
+            developerName : 'Vanish', // 开发者姓名
+            developerEmail: '505515031@qq.com', // 开发者邮箱
+    ]
+}

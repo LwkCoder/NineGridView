@@ -1,6 +1,6 @@
 #NineGridView
 -dontwarn com.lwk.ninegridview.**
--keep class com.lwk.ninegridview.**{*;}
+-keep class com.lwkandroid.ninegridview.**{*;}
 #ImagePicker
 -dontwarn com.lwkandroid.imagepicker.**
 -keep class com.lwkandroid.imagepicker.**{*;}
