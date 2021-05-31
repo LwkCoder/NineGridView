@@ -60,7 +60,7 @@ dependencies{
         {
 
             @Override
-            public void onPlusImageClicked(NgvChildImageView plusImageView, int dValueToLimited)
+            public void onPlusImageClicked(ImageView plusImageView, int dValueToLimited)
             {
                //点击“+”号图片后的回调
                //plusImageView代表“+”号图片对象，dValueToLimited代表当前可继续添加的图片数量
@@ -87,8 +87,8 @@ dependencies{
 <br/>
 
 ### 效果图:
-![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample_pic_display.png) <br />
-![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample_pic_edit.png)
+![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample1.png) <br />
+![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample2.png)
 
 ### 混淆配置：
 无需额外混淆配置

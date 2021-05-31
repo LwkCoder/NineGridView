@@ -1,6 +1,6 @@
 ext {
     configs = [
-            libVersion    : "1.4.4", // 指定库的版本号
+            libVersion    : "2.0.0", // 指定库的版本号
             libGroupId    : "com.lwkandroid.library", // 库的group名，确定好之后不能修改
             libArtifactId : "NineGridView",//库的ArtifactId
             libName       : 'NineGridView',// 库的名称

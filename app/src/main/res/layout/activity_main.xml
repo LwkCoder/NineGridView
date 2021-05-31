@@ -22,21 +22,11 @@
             android:checked="true"
             android:text="打开编辑模式" />
 
-        <com.lwkandroid.widget.ninegridview.NineGridView
+        <com.lwkandroid.widget.NineGridView
             android:id="@+id/ninegridview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:enable_edit_mode="true"
-            app:horizontal_child_count="4"
-            app:single_image_height="280dp"
-            app:single_image_width="210dp" />
-
-        <Button
-            android:id="@+id/btn_wechat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="朋友圈样式" />
+            app:enable_edit_mode="true" />
 
     </LinearLayout>
 

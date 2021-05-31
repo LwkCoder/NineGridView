@@ -39,8 +39,6 @@ dependencies {
     implementation "androidx.legacy:legacy-support-v4:$Supportv4Version"
     implementation "com.github.bumptech.glide:glide:$GlideVersion"
     implementation "com.lwkandroid:ImagePicker:$ImagePickerVersion"
-    implementation "com.lwkandroid.library:rcvadapter:$RcvAdapterVersion"
     implementation "androidx.constraintlayout:constraintlayout:$ConstraintLayoutVersion"
-    implementation "androidx.recyclerview:recyclerview:$RecyclerViewVersion"
     implementation project(':library')
 }

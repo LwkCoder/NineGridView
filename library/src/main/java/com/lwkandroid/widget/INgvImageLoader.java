@@ -1,4 +1,4 @@
-package com.lwkandroid.widget.ninegridview;
+package com.lwkandroid.widget;
 
 import android.widget.ImageView;
 

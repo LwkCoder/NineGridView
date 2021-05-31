@@ -1,4 +1,4 @@
-package com.lwkandroid.widget.ninegridview;
+package com.lwkandroid.widget;
 
 import android.content.Context;
 import android.widget.ImageView;
@@ -10,7 +10,7 @@ import java.util.List;
  * @author:
  * @date: 2021/5/25 10:40
  */
-public class DefaultNgvAdapter<D> extends AbsNgvAdapter<NgvChildImageView, D>
+public class DefaultNgvAdapter<D> extends AbsNgvAdapter<ImageView, NgvChildImageView, D>
 {
     private INgvImageLoader<D> mImageLoader;
     private OnChildClickedListener<D> mListener;
@@ -28,19 +28,19 @@ public class DefaultNgvAdapter<D> extends AbsNgvAdapter<NgvChildImageView, D>
     }
 
     @Override
-    NgvChildImageView createPlusView(Context context)
+    ImageView createPlusView(Context context)
     {
-        return new NgvChildImageView(context);
+        return new ImageView(context);
     }
 
     @Override
-    void bindPlusView(NgvChildImageView childView, NgvAttrOptions attrOptions)
+    void bindPlusView(ImageView plusView, NgvAttrOptions attrOptions)
     {
-        childView.getImageContent().setImageDrawable(attrOptions.getIconPlusDrawable());
-        childView.getImageContent().setScaleType(ImageView.ScaleType.FIT_XY);
-        childView.setOnClickListener(v -> {
+        plusView.setImageDrawable(attrOptions.getIconPlusDrawable());
+        plusView.setScaleType(ImageView.ScaleType.FIT_XY);
+        plusView.setOnClickListener(v -> {
             if (mListener != null)
-                mListener.onPlusImageClicked(childView, getDValueToLimited());
+                mListener.onPlusImageClicked(plusView, getDValueToLimited());
         });
     }
 
@@ -85,7 +85,7 @@ public class DefaultNgvAdapter<D> extends AbsNgvAdapter<NgvChildImageView, D>
 
     public interface OnChildClickedListener<D>
     {
-        void onPlusImageClicked(NgvChildImageView plusImageView, int dValueToLimited);
+        void onPlusImageClicked(ImageView plusImageView, int dValueToLimited);
 
         void onContentImageClicked(int position, D data, NgvChildImageView childImageView);
 

@@ -1,4 +1,4 @@
-package com.lwkandroid.widget.ninegridview;
+package com.lwkandroid.widget;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -75,9 +75,12 @@ public class NgvChildImageView extends ViewGroup
     {
         int mMeasuredWidth = getMeasuredWidth();
 
-        mContentImageView.layout(mDeleteImageSize / 2, mDeleteImageSize / 2,
-                mDeleteImageSize / 2 + mContentImageWidth, mDeleteImageSize / 2 + mContentImageHeight);
-        mDeleteImageView.layout(mMeasuredWidth - mDeleteImageSize, 0, mMeasuredWidth, mDeleteImageSize);
+        if (mDeleteImageView != null)
+            mDeleteImageView.layout(mMeasuredWidth - mDeleteImageSize, 0, mMeasuredWidth, mDeleteImageSize);
+
+        if (mContentImageView != null)
+            mContentImageView.layout(mDeleteImageSize / 2, mDeleteImageSize / 2,
+                    mDeleteImageSize / 2 + mContentImageWidth, mDeleteImageSize / 2 + mContentImageHeight);
     }
 
     public ImageView getImageContent()
@@ -151,7 +154,6 @@ public class NgvChildImageView extends ViewGroup
     private void initChildView(Context context)
     {
         mContentImageView = new ImageView(context);
-        mContentImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         mDeleteImageView = new ImageView(context);
 
         addView(mContentImageView);

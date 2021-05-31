@@ -4,7 +4,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.lwkandroid.widget.ninegridview.INgvImageLoader;
+import com.lwkandroid.widget.INgvImageLoader;
 
 /**
  * 图片加载器，必须设置

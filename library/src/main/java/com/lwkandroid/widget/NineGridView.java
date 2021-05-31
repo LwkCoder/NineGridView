@@ -1,4 +1,4 @@
-package com.lwkandroid.widget.ninegridview;
+package com.lwkandroid.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,10 +7,13 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.lwkandroid.widget.ninegridview.R;
 
 import java.util.List;
 
@@ -28,6 +31,7 @@ public class NineGridView extends ViewGroup implements AbsNgvAdapter.OnDataChang
     private AbsNgvAdapter mAdapter;
     private NgvAttrOptions mAttrOptions;
     private View mPlusImageView;
+    private int mMeasuredWidth;
 
     public static final ImageView.ScaleType[] SCALE_TYPE_ARRAY = {
             ImageView.ScaleType.MATRIX,
@@ -80,7 +84,7 @@ public class NineGridView extends ViewGroup implements AbsNgvAdapter.OnDataChang
         Drawable plusDrawable = ta.getDrawable(R.styleable.NineGridView_icon_plus_drawable);
         if (plusDrawable == null)
         {
-            plusDrawable = ResourcesCompat.getDrawable(context.getResources(), R.drawable.ic_ngv_add_pic, context.getTheme());
+            plusDrawable = ResourcesCompat.getDrawable(context.getResources(), R.drawable.ic_ngv_plus, context.getTheme());
         }
         mAttrOptions.setIconPlusDrawable(plusDrawable);
         Drawable deleteDrawable = ta.getDrawable(R.styleable.NineGridView_icon_delete_drawable);
@@ -104,28 +108,22 @@ public class NineGridView extends ViewGroup implements AbsNgvAdapter.OnDataChang
         //水平方向有多少列
         int horizontalChildCount = mAttrOptions.getHorizontalChildCount();
         //计算竖直方向有多少行
-        int verticalChildCount = 0;
         int childCount = getChildCount();
-        if (childCount == 0)
-        {
-            verticalChildCount = 0;
-        } else if (childCount <= horizontalChildCount)
-        {
-            verticalChildCount = 1;
-        } else
-        {
-            verticalChildCount = (int) Math.ceil((float) childCount / (float) horizontalChildCount);
-        }
+        int verticalChildCount = (int) Math.ceil((float) childCount / (float) horizontalChildCount);
         //子控件间距
         int dividerSize = mAttrOptions.getDividerSize();
+        //获取测量宽高
+        //这里宽度需要记录下测量的最大值。因为onMeasure()执行多次，在RelativeLayout中存在问题:
+        //在执行第一次onMeasure()时，如果当前child数量较少，调用了setMeasuredDimension(requiredWidth, requiredHeight)后
+        //在第二次onMeasure执行后，MeasureSpec.getSize(widthMeasureSpec)获取的宽度会缩短，导致图片尺寸变小
+        mMeasuredWidth = Math.max(MeasureSpec.getSize(widthMeasureSpec), mMeasuredWidth);
+        int measuredHeight = MeasureSpec.getSize(heightMeasureSpec);
         //最终整个控件的所需宽高
         int requiredWidth, requiredHeight;
         //图片尺寸
         int mImageWidth, mImageHeight;
-        //获取当前可用最大宽高
-        int totalAvailableWidth = MeasureSpec.getSize(widthMeasureSpec) - getPaddingLeft() - getPaddingRight();
-        int totalAvailableHeight = MeasureSpec.getSize(heightMeasureSpec) - getPaddingTop() - getPaddingBottom();
-
+        //获取当前可用最大宽度
+        int totalAvailableWidth = mMeasuredWidth - getPaddingLeft() - getPaddingRight();
         //多张图片时，每个子控件的建议尺寸
         int suggestImageSize = (totalAvailableWidth - (horizontalChildCount - 1) * dividerSize) / horizontalChildCount;
 
@@ -159,8 +157,8 @@ public class NineGridView extends ViewGroup implements AbsNgvAdapter.OnDataChang
                     mImageWidth = mImageHeight = suggestImageSize;
                 } else
                 {
-                    mImageWidth = Math.min(mAttrOptions.getSingleImageWidth(), totalAvailableWidth);
-                    mImageHeight = Math.min(mAttrOptions.getSingleImageHeight(), totalAvailableHeight);
+                    mImageWidth = mAttrOptions.getSingleImageWidth();
+                    mImageHeight = mAttrOptions.getSingleImageHeight();
                 }
                 requiredWidth = mImageWidth + getPaddingLeft() + getPaddingRight();
                 requiredHeight = mImageHeight + getPaddingTop() + getPaddingBottom();
@@ -182,6 +180,16 @@ public class NineGridView extends ViewGroup implements AbsNgvAdapter.OnDataChang
         //设置最终该控件宽高
         setMeasuredDimension(requiredWidth, requiredHeight);
 
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        Log.e("AA", "measuredWidth->" + mMeasuredWidth + " "
+                //                + "widthMode->" + (MeasureSpec.AT_MOST == widthMode) + " " + (MeasureSpec.UNSPECIFIED == widthMode) + " " + (MeasureSpec.EXACTLY == widthMode)
+                + " " + "measuredHeight->" + measuredHeight + " "
+                //                + "heightMode->" + (MeasureSpec.AT_MOST == heightMode) + " " + (MeasureSpec.UNSPECIFIED == heightMode) + " " + (MeasureSpec.EXACTLY == heightMode) + " "
+                + "mImageWidth->" + mImageWidth + " mImageHeight->" + mImageHeight + " "
+                + "requiredWidth->" + requiredWidth + " requiredHeight->" + requiredHeight + " "
+        );
+
         //设置每个子控件宽高
         for (int index = 0; index < childCount; index++)
         {
@@ -190,7 +198,7 @@ public class NineGridView extends ViewGroup implements AbsNgvAdapter.OnDataChang
             int childHeightSpec = MeasureSpec.makeMeasureSpec(mImageHeight, MeasureSpec.EXACTLY);
             childView.measure(childWidthSpec, childHeightSpec);
         }
-        //给加号图片增加间距
+        // 给加号图片增加间距
         if (mPlusImageView != null)
         {
             int paddingSize = (int) (Math.min(mImageWidth, mImageHeight) * mAttrOptions.getIconDeleteSizeRatio()) / 2;

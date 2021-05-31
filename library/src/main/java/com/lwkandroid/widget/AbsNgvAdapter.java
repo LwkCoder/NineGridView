@@ -1,4 +1,4 @@
-package com.lwkandroid.widget.ninegridview;
+package com.lwkandroid.widget;
 
 import android.content.Context;
 import android.view.View;
@@ -11,7 +11,7 @@ import java.util.List;
  * @author: LWK
  * @date: 2021/5/25 9:26
  */
-public abstract class AbsNgvAdapter<V extends View, D>
+public abstract class AbsNgvAdapter<P extends View, V extends View, D>
 {
     private final List<D> mDataList = new LinkedList<>();
     private int mMaxDataSize;
@@ -23,15 +23,15 @@ public abstract class AbsNgvAdapter<V extends View, D>
      * @param context
      * @return
      */
-    abstract V createPlusView(Context context);
+    abstract P createPlusView(Context context);
 
     /**
      * 设置“+”图片控件配置项的方法
      *
-     * @param childView
+     * @param plusView
      * @param attrOptions
      */
-    abstract void bindPlusView(V childView, NgvAttrOptions attrOptions);
+    abstract void bindPlusView(P plusView, NgvAttrOptions attrOptions);
 
     /**
      * 创建图片子控件的方法
