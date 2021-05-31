@@ -87,8 +87,8 @@ dependencies{
 <br/>
 
 ### 效果图:
-![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample1.png) <br />
-![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample2.png)
+![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample1.jpg) <br />
+![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample2.jpg)
 
 ### 混淆配置：
 无需额外混淆配置
