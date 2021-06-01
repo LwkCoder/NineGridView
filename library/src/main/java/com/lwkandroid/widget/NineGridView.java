@@ -13,8 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.lwkandroid.widget.ninegridview.R;
-
 import java.util.List;
 
 import androidx.annotation.DrawableRes;
