@@ -1,4 +1,4 @@
-package com.lwkandroid.widget;
+package com.lwkandroid.widget.ngv;
 
 import android.content.Context;
 import android.view.View;

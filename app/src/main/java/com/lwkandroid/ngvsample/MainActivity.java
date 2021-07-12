@@ -11,9 +11,9 @@ import android.widget.Toast;
 import com.lwkandroid.imagepicker.ImagePicker;
 import com.lwkandroid.imagepicker.data.ImageBean;
 import com.lwkandroid.imagepicker.data.ImagePickType;
-import com.lwkandroid.widget.DefaultNgvAdapter;
-import com.lwkandroid.widget.NgvChildImageView;
-import com.lwkandroid.widget.NineGridView;
+import com.lwkandroid.widget.ngv.DefaultNgvAdapter;
+import com.lwkandroid.widget.ngv.NgvChildImageView;
+import com.lwkandroid.widget.ngv.NineGridView;
 
 import java.util.List;
 

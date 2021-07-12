@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.lwkandroid.imagepicker.data.ImageBean;
-import com.lwkandroid.widget.INgvImageLoader;
+import com.lwkandroid.widget.ngv.INgvImageLoader;
 
 /**
  * @description:

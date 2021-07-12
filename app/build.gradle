@@ -36,7 +36,6 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "androidx.appcompat:appcompat:$AppCompatXVersion"
-    implementation "androidx.legacy:legacy-support-v4:$Supportv4Version"
     implementation "com.github.bumptech.glide:glide:$GlideVersion"
     implementation "com.lwkandroid:ImagePicker:$ImagePickerVersion"
     implementation "androidx.constraintlayout:constraintlayout:$ConstraintLayoutVersion"

@@ -22,7 +22,7 @@
             android:checked="true"
             android:text="打开编辑模式" />
 
-        <com.lwkandroid.widget.NineGridView
+        <com.lwkandroid.widget.ngv.NineGridView
             android:id="@+id/ninegridview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
