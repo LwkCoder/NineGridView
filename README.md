@@ -3,6 +3,10 @@ NineGridView：九宫格图片显示器
 类似微信朋友圈九宫格图片
 ------
 
+【不再维护，如有bug、需求，请自行clone源码修改】
+
+
+
 **2.0.0版本重构后与1.X版本不兼容，请谨慎升级**
 
 ### 使用方法:
@@ -87,8 +91,8 @@ dependencies{
 <br/>
 
 ### 效果图:
-![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample1.jpg) <br />
-![](https://github.com/Vanish136/NineGridView/raw/master/screenshoot/sample2.jpg)
+![](https://github.com/LwkCoder/NineGridView/raw/master/screenshoot/sample1.jpg) <br />
+![](https://github.com/LwkCoder/NineGridView/raw/master/screenshoot/sample2.jpg)
 
 ### 混淆配置：
 无需额外混淆配置
